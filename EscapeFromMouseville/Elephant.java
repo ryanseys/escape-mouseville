@@ -7,22 +7,26 @@
  * (the elephant is indeed terrified of the deadly mice!)
  * 
  * @author Ryan Seys
- * @version 0.1
+ * @version 0.2
  */
 public class Elephant
 {
     // instance variables
     private static final int DEFAULT_MOUSETRAPS = 3;
-    public int mousetraps = DEFAULT_MOUSETRAPS;
+    private int mousetraps;
+    private Mouseville maze;
+    private int x;
+    private int y;
 
     /**
      * Assign the maze and set the coordinates to the ones supplied by the parameters
      */
     public Elephant(int x, int y, Mouseville m)
     {
-        
-        int mousetraps = DEFAULT_MOUSETRAPS;
-        Mouseville maze;
+        this.x = x;
+        this.y = y;
+        mousetraps = DEFAULT_MOUSETRAPS;
+        maze = m;
     }
     
     /**
@@ -31,10 +35,10 @@ public class Elephant
     public Elephant(Mouseville m)
     {
         // initialise instance variables
-        int x;
-        int y;
-        int mousetraps;
-        Mouseville maze;
+        x = 0;
+        y = 0;
+        mousetraps = DEFAULT_MOUSETRAPS;
+        maze = m;
     }
     
     /**
@@ -42,8 +46,7 @@ public class Elephant
      */
     public int getX()
     {
-        // put your code here
-        return 0;
+        return x;
     }
     
     /**
@@ -51,14 +54,12 @@ public class Elephant
      */
     public int getY()
     {
-        // put your code here
-        return 0;
+        return y;
     }
     
     public int inventory()
     {
-        // put your code here
-        return 0;
+        return mousetraps;
     }
     
     /**
@@ -67,7 +68,42 @@ public class Elephant
      */
     public boolean canGoTo(int i, int j)
     {
-        // put your code here
+        //you can subtract or add from one or the other of the two coordinates but not both. (4 cases)
+        if (getY() == j)
+        {
+            //check x
+            if ((getX() - 1) == i)
+            {
+                if ((i <= (maze.SIZE - 1)) && (i >= 0)) //not out of bounds
+                {
+                    return true;
+                }
+            }
+            else if ((getX() + 1) == i)
+            {
+                if ((i <= (maze.SIZE - 1)) && (i >= 0)) //not out of bounds
+                {
+                    return true;
+                }
+            }
+        }
+        else if (getX() == i)
+        {
+            if ((getY() - 1) == j)
+            {
+                if ((j <= (maze.SIZE - 1)) && (j >= 0)) //not out of bounds
+                {
+                    return true;
+                }
+            }
+            else if ((getY() + 1) == j)
+            {
+                if ((j <= (maze.SIZE - 1)) && (j >= 0)) //not out of bounds
+                {
+                    return true;
+                }
+            }
+        }
         return false;
     }
     
@@ -76,7 +112,11 @@ public class Elephant
      */
     public void moveUp()
     {
-        // put your code here
+       if(canGoTo(getX(),(getY() -1)))
+       {
+           // you can go
+       }
+       else System.out.println("You cannot move there.");
     }
     
     /**
@@ -84,7 +124,11 @@ public class Elephant
      */
     public void moveDown()
     {
-        // put your code here
+       if(canGoTo(getX(),(getY() + 1)))
+       {
+           // you can go
+       }
+       else System.out.println("You cannot move there.");
     }
     
     /**
@@ -92,7 +136,11 @@ public class Elephant
      */
     public void moveLeft()
     {
-        // put your code here
+       if(canGoTo((getX() - 1),getY()))
+       {
+           // you can go
+       }
+       else System.out.println("You cannot move there.");
     }
     
     /**
@@ -100,7 +148,11 @@ public class Elephant
      */
     public void moveRight()
     {
-        // put your code here
+       if(canGoTo((getX() + 1),getY()))
+       {
+           // you can go
+       }
+       else System.out.println("You cannot move there.");
     }
     /**
      * Drop a mousetrap at the current coordiante 
@@ -108,6 +160,11 @@ public class Elephant
      */
     public void dropMousetrap()
     {
-        // put your code here
+        if (inventory() > 0)
+        {
+            maze.setMousetrap(getX(), getY());
+            mousetraps = inventory() - 1;
+        }
+        else System.out.println("You don't have any more mousetraps left.");
     }
 }

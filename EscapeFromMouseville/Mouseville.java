@@ -4,20 +4,21 @@ import java.awt.*;
  * an exit, and potentially a few mousetraps if dropped by the elephant.
  * 
  * @author Ryan Seys
- * @version 0.1
+ * @version 0.2
  */
 public class Mouseville
 {
-    // instance variables - replace the example below with your own
-    private static final int SIZE = 5;
-    
+    // instance variables
+    public static final int SIZE = 5;
+    public boolean grid[][];
     /**
      * Constructor for objects of class Mouseville
      */
     public Mouseville()
     {
         // initialise instance variables
-        boolean grid[][];
+        //initialized with a grid full of false values
+        grid = new boolean[SIZE][SIZE];
         Point exit;
     }
 
@@ -36,6 +37,7 @@ public class Mouseville
      */
     public void setMousetrap(int x, int y) 
     {
+        grid[x][y] = true;
     }
     
     /**
@@ -63,7 +65,19 @@ public class Mouseville
      */
     public String toString()
     {
-        return "toString Function returns this right now";
+        String output = ""; //initialize
+        for(int i = 0; i < SIZE; i++)
+        {
+            for(int j = 0; j < SIZE; j++)
+            {
+                if (grid[i][j] == false)
+                {
+                    output = output + ".   ";
+                }
+            }
+            output = output + "\n\n";
+        }
+        return output;
     }
     
     /**
@@ -71,5 +85,6 @@ public class Mouseville
      */
     public void print()
     {
+        System.out.println(toString());
     }
 }
