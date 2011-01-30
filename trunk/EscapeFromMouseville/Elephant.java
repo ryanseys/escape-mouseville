@@ -35,8 +35,8 @@ public class Elephant
     public Elephant(Mouseville m)
     {
         // initialise instance variables
-        x = 0;
-        y = 0;
+        x = 2;
+        y = 1;
         mousetraps = DEFAULT_MOUSETRAPS;
         maze = m;
     }
@@ -112,9 +112,9 @@ public class Elephant
      */
     public void moveUp()
     {
-       if(canGoTo(getX(),(getY() -1)))
+       if(canGoTo(getX(),(getY() - 1)))
        {
-           // you can go
+           y = (getY() - 1);
        }
        else System.out.println("You cannot move there.");
     }
@@ -126,7 +126,7 @@ public class Elephant
     {
        if(canGoTo(getX(),(getY() + 1)))
        {
-           // you can go
+           y = (getY() + 1);
        }
        else System.out.println("You cannot move there.");
     }
@@ -138,7 +138,7 @@ public class Elephant
     {
        if(canGoTo((getX() - 1),getY()))
        {
-           // you can go
+           x = (getX() - 1);
        }
        else System.out.println("You cannot move there.");
     }
@@ -150,7 +150,7 @@ public class Elephant
     {
        if(canGoTo((getX() + 1),getY()))
        {
-           // you can go
+           x = (getX() + 1);
        }
        else System.out.println("You cannot move there.");
     }
