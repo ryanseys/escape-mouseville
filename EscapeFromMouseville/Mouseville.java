@@ -11,6 +11,8 @@ public class Mouseville
     // instance variables
     public static final int SIZE = 5;
     public boolean grid[][];
+    public Elephant e;
+    Point exit;
     /**
      * Constructor for objects of class Mouseville
      */
@@ -18,18 +20,19 @@ public class Mouseville
     {
         // initialise instance variables
         //initialized with a grid full of false values
+        e = new Elephant(this);
         grid = new boolean[SIZE][SIZE];
-        Point exit;
+        exit = new Point(3,2); // exit is given an set point. this can be changed later.
     }
 
     /**
      * @param  y   a sample parameter for a method
      * @return     a reference to the elephant.
      */
-    public /*Elephant*/ int getElephant()
+    public Elephant getElephant()
     {
         // put your code here
-        return 0;
+        return e;
     }
     
     /**
@@ -45,7 +48,11 @@ public class Mouseville
      */
     public boolean hasMouseTrap(int x, int y)
     {
-        return false;
+        if(grid[x][y] == true)
+        {
+            return true;
+        }
+        else return false;
     }
     
     /**
@@ -66,13 +73,28 @@ public class Mouseville
     public String toString()
     {
         String output = ""; //initialize
-        for(int i = 0; i < SIZE; i++)
+        for(int j = 0; j < SIZE; j++)
         {
-            for(int j = 0; j < SIZE; j++)
+            for(int i = 0; i < SIZE; i++)
             {
-                if (grid[i][j] == false)
+                if ((i == exit.getX()) && (j == exit.getY()))
                 {
-                    output = output + ".   ";
+                    output = output + "X   "; //exit has precendence over elephant
+                }
+                else if ((i == e.getX()) && (j == e.getY()))
+                {
+                    output = output + "E   "; //elephant has precendence over traps.
+                }
+                else
+                {
+                    if (grid[i][j] == false)
+                    {
+                        output = output + ".   ";
+                    }
+                    else if (grid[i][j] == true)
+                    {
+                        output = output + "T   ";
+                    }
                 }
             }
             output = output + "\n\n";
