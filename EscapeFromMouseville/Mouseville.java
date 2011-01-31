@@ -18,25 +18,25 @@ public class Mouseville
      */
     public Mouseville()
     {
-        // initialise instance variables
-        //initialized with a grid full of false values
-        e = new Elephant(this);
+        //initialized a grid full of false values
         grid = new boolean[SIZE][SIZE];
+        e = new Elephant(this);
         exit = new Point(3,2); // exit is given an set point. this can be changed later.
     }
 
     /**
-     * @param  y   a sample parameter for a method
+     * Fetch and return the elephant object.
      * @return     a reference to the elephant.
      */
     public Elephant getElephant()
     {
-        // put your code here
         return e;
     }
     
     /**
      * Set a mousetrap at the indicated coordinate.
+     * @param  x   x-coordinate to set the trap at.
+     * @param  y   y-coordinate to set the trap at.
      */
     public void setMousetrap(int x, int y) 
     {
@@ -44,6 +44,9 @@ public class Mouseville
     }
     
     /**
+     * Checks if a coordinate has a mousetrap on it.
+     * @param  x   x-coordinate to check for a trap.
+     * @param  y   y-coordinate to check for a trap.
      * @returns true if there is a mousetrap at the indicated coordinate.
      */
     public boolean hasMouseTrap(int x, int y)
@@ -56,11 +59,17 @@ public class Mouseville
     }
     
     /**
+     * Has the elephant reached the exit yet.
+     * 
      * @returns true if the elephant has reached the exit.
      */
     public boolean hasWon()
     {
-        return false;
+        if ((exit.getX() == e.getX()) && (exit.getY() == e.getY()))
+        {
+            return true;
+        }
+        else return false;
     }
     
     /**
@@ -69,6 +78,7 @@ public class Mouseville
      * - put a "E" if the elephant is at a given coordinate; 
      * - otherwise, put a "T" if there's a mousetrap at that coordinate; 
      * - otherwise, just print a dot "."
+     * @return A string representation of the grid.
      */
     public String toString()
     {
