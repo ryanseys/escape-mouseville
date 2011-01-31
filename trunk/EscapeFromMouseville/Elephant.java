@@ -43,6 +43,8 @@ public class Elephant
     
     /**
      * Get the X-coordinate of the Elephant.
+     * 
+     * @return The x-coordinate of the elephant.
      */
     public int getX()
     {
@@ -51,12 +53,19 @@ public class Elephant
     
     /**
      * Get the Y-coordinate of the Elephant.
+     * 
+     * @return The y-coordinate of the elephant.
      */
     public int getY()
     {
         return y;
     }
     
+    /**
+     * Get how many mousetraps are left to use.
+     * 
+     * @return The amount of mousetraps the elephant still has.
+     */
     public int inventory()
     {
         return mousetraps;
@@ -65,6 +74,10 @@ public class Elephant
     /**
      * Tests to see if the move is valid: can't go outside the bounds, 
      * and can't jump or move diagonally.
+     * 
+     * @param i The x value of where you want the elephant to go.
+     * @param j The y value of where you want the elephant to go.
+     * @return true if the elephant can move there.
      */
     public boolean canGoTo(int i, int j)
     {
