@@ -1,4 +1,3 @@
-
 /**
  * The Elephant is a creature that has coordinates
  * in a maze It can move in that maze (up, down, 
@@ -7,17 +6,21 @@
  * (the elephant is indeed terrified of the deadly mice!)
  * 
  * @author Ryan Seys
- * @version 0.2
+ * @version 1.0
  */
 public class Elephant
 {
     // instance variables
     private static final int DEFAULT_MOUSETRAPS = 3;
+    private static final String ERROR_MOVE = "You cannot move there.";
+    private static final String NO_MTRAPS = "You don't have any more mousetraps left.";
+    private static final int DEFAULT_X = 2;
+    private static final int DEFAULT_Y = 2;
     private int mousetraps;
     private Mouseville maze;
     private int x;
     private int y;
-
+    
     /**
      * Assign the maze and set the coordinates to the ones supplied by the parameters
      */
@@ -35,8 +38,8 @@ public class Elephant
     public Elephant(Mouseville m)
     {
         // initialise instance variables
-        x = 2;
-        y = 1;
+        x = DEFAULT_X;
+        y = DEFAULT_Y;
         mousetraps = DEFAULT_MOUSETRAPS;
         maze = m;
     }
@@ -129,7 +132,7 @@ public class Elephant
        {
            y = (getY() - 1);
        }
-       else System.out.println("You cannot move there.");
+       else System.out.println(ERROR_MOVE);
     }
     
     /**
@@ -141,7 +144,7 @@ public class Elephant
        {
            y = (getY() + 1);
        }
-       else System.out.println("You cannot move there.");
+       else System.out.println(ERROR_MOVE);
     }
     
     /**
@@ -153,7 +156,7 @@ public class Elephant
        {
            x = (getX() - 1);
        }
-       else System.out.println("You cannot move there.");
+       else System.out.println(ERROR_MOVE);
     }
     
     /**
@@ -165,8 +168,9 @@ public class Elephant
        {
            x = (getX() + 1);
        }
-       else System.out.println("You cannot move there.");
+       else System.out.println(ERROR_MOVE);
     }
+    
     /**
      * Drop a mousetrap at the current coordiante 
      * update the inventory accordingly!
@@ -178,6 +182,6 @@ public class Elephant
             maze.setMousetrap(getX(), getY());
             mousetraps = inventory() - 1;
         }
-        else System.out.println("You don't have any more mousetraps left.");
+        else System.out.println(NO_MTRAPS);
     }
 }
