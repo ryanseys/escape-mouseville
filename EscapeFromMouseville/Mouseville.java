@@ -1,10 +1,10 @@
-import java.awt.*;
+import java.awt.*; // The Point class needs this.
 /**
  * Mouseville is essentially a grid containing the elephant, 
  * an exit, and potentially a few mousetraps if dropped by the elephant.
  * 
  * @author Ryan Seys
- * @version 0.2
+ * @version 1.0
  */
 public class Mouseville
 {
@@ -12,7 +12,18 @@ public class Mouseville
     public static final int SIZE = 5;
     public boolean grid[][];
     public Elephant e;
+    private static final int DEFAULT_EXIT_X = 3;
+    private static final int DEFAULT_EXIT_Y = 4;
+    private static final String EXIT_STRING = "X";
+    private static final String ELEPHANT_STRING = "E";
+    private static final String TRAP_STRING = "T";
+    private static final String EMPTY_SPACE_STRING = ".";
+    // horizontal spacer to make it look like a square
+    private static final String H_SPACER_STRING = "   "; 
+    // vertical spacer to make it look like a square
+    private static final String V_SPACER_STRING = "\n\n"; 
     Point exit;
+    
     /**
      * Constructor for objects of class Mouseville
      */
@@ -21,7 +32,7 @@ public class Mouseville
         //initialized a grid full of false values
         grid = new boolean[SIZE][SIZE];
         e = new Elephant(this);
-        exit = new Point(3,2); // exit is given an set point. this can be changed later.
+        exit = new Point(DEFAULT_EXIT_X,DEFAULT_EXIT_Y); // exit is given an set point. this can be changed later.
     }
 
     /**
@@ -89,25 +100,29 @@ public class Mouseville
             {
                 if ((i == exit.getX()) && (j == exit.getY()))
                 {
-                    output = output + "X   "; //exit has precendence over elephant
+                    //exit has precendence over elephant
+                    output = output + EXIT_STRING + H_SPACER_STRING; 
                 }
                 else if ((i == e.getX()) && (j == e.getY()))
                 {
-                    output = output + "E   "; //elephant has precendence over traps.
+                    //elephant has precendence over traps.
+                    output = output + ELEPHANT_STRING + H_SPACER_STRING; 
                 }
                 else
                 {
                     if (grid[i][j] == false)
                     {
-                        output = output + ".   ";
+                        //empty spot
+                        output = output + EMPTY_SPACE_STRING + H_SPACER_STRING;
                     }
                     else if (grid[i][j] == true)
                     {
-                        output = output + "T   ";
+                        //trap!
+                        output = output + TRAP_STRING + H_SPACER_STRING;
                     }
                 }
             }
-            output = output + "\n\n";
+            output = output + V_SPACER_STRING;
         }
         return output;
     }
