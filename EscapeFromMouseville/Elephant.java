@@ -11,15 +11,17 @@
 public class Elephant
 {
     // instance variables
-    private static final int DEFAULT_MOUSETRAPS = 3;
-    private static final String ERROR_MOVE = "You cannot move there.";
-    private static final String NO_MTRAPS = "You don't have any more mousetraps left.";
-    private static final int DEFAULT_X = 2;
-    private static final int DEFAULT_Y = 2;
-    private int mousetraps;
-    private Mouseville maze;
     private int x;
     private int y;
+    private int mousetraps;
+    private Mouseville maze;
+    private static final int DEFAULT_X = 2;
+    private static final int DEFAULT_Y = 2;
+    private static final int DEFAULT_MOUSETRAPS = 3;
+    private static final String INVALID_CMD = "Invalid command";
+    private static final String QUIT_RESPONSE = "You have quit.";
+    private static final String ERROR_MOVE = "You cannot move there.";
+    private static final String NO_MTRAPS = "You don't have any more mousetraps left.";
     
     /**
      * Assign the maze and set the coordinates to the ones supplied by the parameters
@@ -38,10 +40,10 @@ public class Elephant
     public Elephant(Mouseville m)
     {
         // initialise instance variables
+        maze = m;
         x = DEFAULT_X;
         y = DEFAULT_Y;
         mousetraps = DEFAULT_MOUSETRAPS;
-        maze = m;
     }
     
     /**
@@ -217,14 +219,13 @@ public class Elephant
         }
         else if (c == 'q')
         {
-            System.out.print("\f");
-            System.out.println("You have quit.");
+            System.out.print("\f"); //form feed "clears" the display (At least on Mac).
+            System.out.println(QUIT_RESPONSE);
             System.exit(0);
-            
         }
         else
         {
-            System.out.println("Invalid command");
+            System.out.println(INVALID_CMD);
         }
     }
 }

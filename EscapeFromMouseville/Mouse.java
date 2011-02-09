@@ -1,9 +1,8 @@
-
 /**
  * A Mouse chases Elephant objects around a Mouseville.
  * 
  * @author Ryan Seys 
- * @version 0.1
+ * @version 1.0
  */
 public class Mouse
 {
@@ -129,7 +128,7 @@ public class Mouse
         }
         else
         {
-            //ON TOP OF ELEPHANT!! :O
+            //ON TOP OF ELEPHANT! :O (this is handled elsewhere but functionality can be added here).
         }
     }
 }
