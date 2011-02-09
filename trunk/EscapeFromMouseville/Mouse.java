@@ -23,6 +23,7 @@ public class Mouse
         maze = m;
         
     }
+    
     /**
      * Assign the maze, and give an initial position (0, 0).
      */
@@ -41,7 +42,7 @@ public class Mouse
     public int getX()
     {
         //return x value of mouse
-        return 0;
+        return x;
     }
     
     /**
@@ -52,7 +53,7 @@ public class Mouse
     public int getY()
     {
         //return y value of mouse
-        return 0;
+        return y;
     }
     
     /**
@@ -63,14 +64,71 @@ public class Mouse
      */
     public boolean canGoTo(int i, int j)
     {
-        //return whether it can go there.
+        // *** NOTE: THIS HAS BEEN COPY AND PASTED FROM ELEPHANT ***
+        //you can subtract or add from one or the other of the two coordinates but not both. (4 cases)
+        if (getY() == j)
+        {
+            //check x
+            if ((getX() - 1) == i)
+            {
+                if ((i <= (maze.SIZE - 1)) && (i >= 0)) //not out of bounds
+                {
+                    return true;
+                }
+            }
+            else if ((getX() + 1) == i)
+            {
+                if ((i <= (maze.SIZE - 1)) && (i >= 0)) //not out of bounds
+                {
+                    return true;
+                }
+            }
+        }
+        else if (getX() == i)
+        {
+            if ((getY() - 1) == j)
+            {
+                if ((j <= (maze.SIZE - 1)) && (j >= 0)) //not out of bounds
+                {
+                    return true;
+                }
+            }
+            else if ((getY() + 1) == j)
+            {
+                if ((j <= (maze.SIZE - 1)) && (j >= 0)) //not out of bounds
+                {
+                    return true;
+                }
+            }
+        }
         return false;
     }
+    
     /**
      * Move one step in the general direction of the elephant.
      */
     public void move()
     {
-        //move mouse
+        // Four cases: More left, right, up or down of Elephant.
+        if (this.getY() > maze.getElephant().getY()) //elephant is above
+        { 
+            y -= 1; //move up
+        }
+        else if (this.getY() < maze.getElephant().getY()) //elephant is below
+        {
+            y += 1; //move down
+        }
+        else if (this.getX() < maze.getElephant().getX()) //elephant on right
+        {
+            x += 1; //move right
+        }
+        else if (this.getX() > maze.getElephant().getX()) //elephant on left
+        {
+            x -= 1; //move left
+        }
+        else
+        {
+            //ON TOP OF ELEPHANT!! :O
+        }
     }
 }
