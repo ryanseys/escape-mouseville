@@ -25,6 +25,7 @@ public class Mouseville
     private static final String H_SPACER_STRING = "   "; 
     // vertical spacer to make it look like a square
     private static final String V_SPACER_STRING = "\n\n"; 
+    private static final String COMMAND_REQUEST = "Enter a command: ";
     Point exit;
     
     /**
@@ -108,9 +109,9 @@ public class Mouseville
             mice.remove(index); //works only with 1 value right now
         }
         
-        System.out.print("\f");
+        System.out.print("\f"); //form feed "clears" the console (at least on Mac).
         print();
-        System.out.print("Enter a command: ");
+        System.out.print(COMMAND_REQUEST);
     }
     
     /**
@@ -183,6 +184,8 @@ public class Mouseville
         {
             for(int i = 0; i < SIZE; i++)
             {
+                // Note: The order of the following IF statements controls precedence over which letter
+                // is displayed when two objects overlap.
                 if (hasMouseAt(i,j)) {
                     output = output + MOUSE_STRING + H_SPACER_STRING;
                 }

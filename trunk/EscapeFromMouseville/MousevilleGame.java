@@ -3,7 +3,7 @@ import java.util.Scanner;
  * This class basically "runs" the game through its play() method.
  * 
  * @author Ryan Seys
- * @version 0.1
+ * @version 1.0
  */
 public class MousevilleGame
 {
