@@ -109,7 +109,8 @@ public class Mouse
      */
     public void move()
     {
-        // Four cases: More left, right, up or down of Elephant.
+        // Four cases: Move left, right, up or down of Elephant.
+        // quite possibly the laziest move algorithm ever.
         if (this.getY() > maze.getElephant().getY()) //elephant is above
         { 
             y -= 1; //move up
