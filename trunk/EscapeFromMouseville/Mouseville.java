@@ -1,4 +1,5 @@
 import java.awt.*; // The Point class needs this.
+import java.util.ArrayList;
 /**
  * Mouseville is essentially a grid containing the elephant, 
  * an exit, and potentially a few mousetraps if dropped by the elephant.
@@ -12,6 +13,7 @@ public class Mouseville
     public static final int SIZE = 5;
     public boolean grid[][];
     public Elephant e;
+    private ArrayList<Mouse> mice;
     private static final int DEFAULT_EXIT_X = 3;
     private static final int DEFAULT_EXIT_Y = 4;
     private static final String EXIT_STRING = "X";
@@ -30,6 +32,7 @@ public class Mouseville
     public Mouseville()
     {
         //initialized a grid full of false values
+        mice = new ArrayList<Mouse>();
         grid = new boolean[SIZE][SIZE];
         e = new Elephant(this);
         exit = new Point(DEFAULT_EXIT_X,DEFAULT_EXIT_Y); // exit is given an set point. this can be changed later.
@@ -44,6 +47,33 @@ public class Mouseville
         return e;
     }
     
+    public ArrayList<Mouse> getMice() 
+    {
+        return mice;
+    }
+    
+    public void addMouse(Mouse m)
+    {
+        //add mouse
+    }
+    
+    public boolean hasMouseAt(int i, int j)
+    {
+        //does it have a mouse at (x,y)
+        return false;
+    }
+    
+    public void resolve()
+    {
+        //resolve?
+    }
+    
+    public boolean hasLost()
+    {
+        //have you lost?
+        return false;
+    }
+
     /**
      * Set a mousetrap at the indicated coordinate.
      * @param  x   x-coordinate to set the trap at.

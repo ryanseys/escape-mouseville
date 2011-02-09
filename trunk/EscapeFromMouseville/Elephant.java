@@ -184,4 +184,9 @@ public class Elephant
         }
         else System.out.println(NO_MTRAPS);
     }
+    
+    public void processCommand(char c) 
+    {
+        //process
+    }
 }
