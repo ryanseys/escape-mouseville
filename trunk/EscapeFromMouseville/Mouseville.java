@@ -37,6 +37,8 @@ public class Mouseville
     {
         //initialized a grid full of false values
         mice = new ArrayList<Mouse>();
+        Mouse m1 = new Mouse(this); //create a mouse
+        mice.add(m1); //add it to the list
         grid = new boolean[SIZE][SIZE];
         e = new Elephant(this);
         exit = new Point(DEFAULT_EXIT_X,DEFAULT_EXIT_Y); // exit is given an set point. this can be changed later.
@@ -77,7 +79,8 @@ public class Mouseville
     {
         for (Mouse m : mice)
         {
-            if ((i == m.getX()) && (j == m.getY())){
+            if ((i == m.getX()) && (j == m.getY()))
+            {
                 return true;
             }
         }
@@ -89,7 +92,25 @@ public class Mouseville
      */
     public void resolve()
     {
-        //resolve?
+        int index = 0;
+        boolean toRemove = false;
+        for (Mouse m : mice)
+        {
+             if (hasMouseTrap(m.getX(), m.getY()))
+             {
+                 grid[m.getX()][m.getY()] = false; //remove trap from grid.
+                 index = mice.indexOf(m); //remove mouse from list.
+                 toRemove = true;
+             }
+        }
+        if (toRemove)
+        {
+            mice.remove(index); //works only with 1 value right now
+        }
+        
+        System.out.print("\f");
+        print();
+        System.out.print("Enter a command: ");
     }
     
     /**
@@ -100,7 +121,7 @@ public class Mouseville
     {
         for (Mouse m : mice)
         {
-            if ((m.getY() == e.getY()) && (m.getX() == e.getY()))
+            if (hasMouseAt(e.getX(), e.getY()))
             {
                 return true;
             }

@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 /**
  * This class basically "runs" the game through its play() method.
  * 
@@ -28,7 +28,32 @@ public class MousevilleGame
      */
     public void play()
     {
-        //play
+        char command;
+        boolean done = false;
+        maze.resolve();
+        while(!done)
+        {
+            Scanner s = new Scanner(System.in);
+            command = s.nextLine().charAt(0);
+            maze.e.processCommand(command);
+            //move all the mice.
+            for (Mouse m : maze.getMice())
+            {
+                m.move();
+            }
+            maze.resolve();
+            if (maze.hasLost())
+            {
+                System.out.println("YOU LOST!");
+                done = true;
+            }
+            else if (maze.hasWon())
+            {
+                System.out.println("YOU WON!");
+                done = true;
+            }
+            
+        }
     }
     
     /**

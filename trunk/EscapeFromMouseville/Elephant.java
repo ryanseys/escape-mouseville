@@ -195,6 +195,36 @@ public class Elephant
      */
     public void processCommand(char c) 
     {
-        //process
+        if (c == 'w')
+        {
+            moveUp();
+        }
+        else if (c == 'z')
+        {
+            moveDown();
+        }
+        else if (c == 'a')
+        {
+            moveLeft();
+        }
+        else if (c == 's')
+        {
+            moveRight();
+        }
+        else if (c == 'm')
+        {
+            dropMousetrap();
+        }
+        else if (c == 'q')
+        {
+            System.out.print("\f");
+            System.out.println("You have quit.");
+            System.exit(0);
+            
+        }
+        else
+        {
+            System.out.println("Invalid command");
+        }
     }
 }
