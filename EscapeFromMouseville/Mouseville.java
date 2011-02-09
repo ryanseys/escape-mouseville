@@ -16,6 +16,7 @@ public class Mouseville
     private ArrayList<Mouse> mice;
     private static final int DEFAULT_EXIT_X = 3;
     private static final int DEFAULT_EXIT_Y = 4;
+    private static final String MOUSE_STRING = "M";
     private static final String EXIT_STRING = "X";
     private static final String ELEPHANT_STRING = "E";
     private static final String TRAP_STRING = "T";
@@ -65,7 +66,7 @@ public class Mouseville
      */
     public void addMouse(Mouse m)
     {
-        //add mouse
+        mice.add(m);
     }
     
     /**
@@ -74,7 +75,12 @@ public class Mouseville
      */
     public boolean hasMouseAt(int i, int j)
     {
-        //does it have a mouse at (x,y)
+        for (Mouse m : mice)
+        {
+            if ((i == m.getX()) && (j == m.getY())){
+                return true;
+            }
+        }
         return false;
     }
     
@@ -92,7 +98,13 @@ public class Mouseville
      */
     public boolean hasLost()
     {
-        //have you lost?
+        for (Mouse m : mice)
+        {
+            if ((m.getY() == e.getY()) && (m.getX() == e.getY()))
+            {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -136,6 +148,7 @@ public class Mouseville
     
     /**
      * Returns a string representation of the grid: 
+     * - put an "M" at the location of a mouse.
      * - put an "X" at the location of the exit; 
      * - put a "E" if the elephant is at a given coordinate; 
      * - otherwise, put a "T" if there's a mousetrap at that coordinate; 
@@ -149,7 +162,10 @@ public class Mouseville
         {
             for(int i = 0; i < SIZE; i++)
             {
-                if ((i == exit.getX()) && (j == exit.getY()))
+                if (hasMouseAt(i,j)) {
+                    output = output + MOUSE_STRING + H_SPACER_STRING;
+                }
+                else if ((i == exit.getX()) && (j == exit.getY()))
                 {
                     //exit has precendence over elephant
                     output = output + EXIT_STRING + H_SPACER_STRING; 
