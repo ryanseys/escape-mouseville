@@ -36,6 +36,7 @@ public class MousevilleGame
      */
     public static void main(String[] args)
     {
-        //main
+        MousevilleGame m = new MousevilleGame();
+        m.play();
     }
 }

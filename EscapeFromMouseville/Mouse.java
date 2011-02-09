@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Mouse here.
+ * A Mouse chases Elephant objects around a Mouseville.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Seys 
+ * @version 0.1
  */
 public class Mouse
 {
@@ -13,21 +13,30 @@ public class Mouse
     private Mouseville maze;
 
     /**
-     * Constructor for objects of class Mouse
+     * Assign the maze and set the coordinates to the ones supplied by the parameters.
      */
     public Mouse(int x, int y, Mouseville m)
     {
         // initialise instance variables
-        this.x = x;
-        this.y = y;
-        maze = new Mouseville();
+        this.x = x; //assigns class x the value of parameter x
+        this.y = y; //assigns class y the value of parameter y
+        maze = m;
         
+    }
+    /**
+     * Assign the maze, and give an initial position (0, 0).
+     */
+    public Mouse(Mouseville m)
+    {
+        maze = m;
+        x = 0;
+        y = 0;
     }
 
     /**
-     * Method description
+     * Get X coordinate of mouse.
      * 
-     * @return     X coordinate of mouse.
+     * @return X coordinate of mouse.
      */
     public int getX()
     {
@@ -36,9 +45,9 @@ public class Mouse
     }
     
     /**
-     * Method description
+     * Get Y coodinate of mouse.
      * 
-     * @return     Y coordinate of mouse.
+     * @return Y coordinate of mouse.
      */
     public int getY()
     {
@@ -47,7 +56,8 @@ public class Mouse
     }
     
     /**
-     * Method description
+     * Tests to see if the move is valid: can't go outside the bounds,
+     * and can't jump or move diagonally.
      * 
      * @return true if it can go there, false if it can't.
      */
@@ -56,7 +66,9 @@ public class Mouse
         //return whether it can go there.
         return false;
     }
-    
+    /**
+     * Move one step in the general direction of the elephant.
+     */
     public void move()
     {
         //move mouse

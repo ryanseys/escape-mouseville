@@ -27,7 +27,10 @@ public class Mouseville
     Point exit;
     
     /**
-     * Constructor for objects of class Mouseville
+     * Initialize the elephant, the mice, the grid, and the exit (middle of the grid).
+     * - the grid is an array of booleans, where "true" means there's a mousetrap.
+     * - the mice are stored in an arraylist (you can create a few here).
+     * - the exit is a Point (from the java.awt package), used to represent coordinates.
      */
     public Mouseville()
     {
@@ -40,34 +43,53 @@ public class Mouseville
 
     /**
      * Fetch and return the elephant object.
-     * @return     a reference to the elephant.
+     * @return A reference to the elephant.
      */
     public Elephant getElephant()
     {
         return e;
     }
     
+    /**
+     * All the mice created.
+     * @return The ArrayList of mice.
+     */
     public ArrayList<Mouse> getMice() 
     {
         return mice;
     }
     
+    /**
+     * Add a mouse to the list of mice
+     * @param Mouse to add.
+     */
     public void addMouse(Mouse m)
     {
         //add mouse
     }
     
+    /**
+     * Whether or not there is a mouse at the coordinate.
+     * @return True if there is a mouse there, false if there isn't.
+     */
     public boolean hasMouseAt(int i, int j)
     {
         //does it have a mouse at (x,y)
         return false;
     }
     
+    /**
+     * "Resolves" the new state of the game.
+     */
     public void resolve()
     {
         //resolve?
     }
     
+    /**
+     * Has the elephant got caught by a mouse yet.
+     * @return true if the elephant has got caught.
+     */
     public boolean hasLost()
     {
         //have you lost?
@@ -88,7 +110,7 @@ public class Mouseville
      * Checks if a coordinate has a mousetrap on it.
      * @param  x   x-coordinate to check for a trap.
      * @param  y   y-coordinate to check for a trap.
-     * @returns true if there is a mousetrap at the indicated coordinate.
+     * @return true if there is a mousetrap at the indicated coordinate.
      */
     public boolean hasMouseTrap(int x, int y)
     {
@@ -101,8 +123,7 @@ public class Mouseville
     
     /**
      * Has the elephant reached the exit yet.
-     * 
-     * @returns true if the elephant has reached the exit.
+     * @return true if the elephant has reached the exit.
      */
     public boolean hasWon()
     {
