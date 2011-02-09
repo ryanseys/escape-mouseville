@@ -6,7 +6,7 @@
  * (the elephant is indeed terrified of the deadly mice!)
  * 
  * @author Ryan Seys
- * @version 1.0
+ * @version 1.1
  */
 public class Elephant
 {
@@ -185,6 +185,14 @@ public class Elephant
         else System.out.println(NO_MTRAPS);
     }
     
+    /**
+     * Process user input: character 
+     * 'w' means move up character 
+     * 'z' means move down character
+     * 'a' means move left character 
+     * 's' means move right character
+     * 'm' means drop a mousetrap
+     */
     public void processCommand(char c) 
     {
         //process
