@@ -1,14 +1,15 @@
-
+import java.util.Scanner;
 /**
- * Write a description of class PacmanGame here.
+ * This class basically "runs" the game through its play() method.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Seys 
+ * @version 1.0
  */
 public class PacmanGame
 {
     // instance variables - replace the example below with your own
-    private int x;
+    protected PacmanMaze maze;
+    protected Pacman p;
 
     /**
      * Constructor for objects of class PacmanGame
@@ -16,18 +17,43 @@ public class PacmanGame
     public PacmanGame()
     {
         // initialise instance variables
-        x = 0;
+        maze = new PacmanMaze();
+        p = new Pacman(maze);
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Outputs the current state of the maze - 
+     * Gets console input from the user to determine the elephant's next move.
+     * (keys to move, "m" to drop a mousetrap, "q" to quit)
+     * Until game is won or lost or the user quit.
      */
-    public int sampleMethod(int y)
+    public void play()
     {
-        // put your code here
-        return x + y;
+        char command;
+        boolean done = false;
+        maze.resolve();
+        while(!done)
+        {
+            Scanner s = new Scanner(System.in);
+            command = s.nextLine().charAt(0);
+            maze.p.processCommand(command);
+            //move all the mice.
+            for (Ghost g : maze.getGhosts())
+            {
+                g.move();
+            }
+            maze.resolve();
+            if (maze.hasLost())
+            {
+                System.out.println("YOU LOST!");
+                done = true;
+            }
+            else if (maze.hasWon())
+            {
+                System.out.println("YOU WON!");
+                done = true;
+            }
+            
+        }
     }
 }

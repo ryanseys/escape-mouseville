@@ -20,7 +20,8 @@ public class PacmanMaze
     // horizontal spacer to make it look like a square
     private static final String H_SPACER_STRING = "   ";
     // vertical spacer to make it look like a square
-    private static final String V_SPACER_STRING = "\n\n"; 
+    private static final String V_SPACER_STRING = "\n\n";
+    private static final String COMMAND_REQUEST = "Enter a command: ";
 
     /**
      * Constructor for objects of class PacmanMaze
@@ -75,6 +76,16 @@ public class PacmanMaze
             }
         }
         return false;
+    }
+    
+    /**
+     * "Resolves" the new state of the game.
+     */
+    public void resolve()
+    {
+        System.out.print("\f"); //form feed "clears" the console (at least on Mac).
+        print();
+        System.out.print(COMMAND_REQUEST);
     }
     
     /**
@@ -133,6 +144,10 @@ public class PacmanMaze
                 {
                         //empty spot
                         output = output + DOT + H_SPACER_STRING;
+                }
+                else if (grid[i][j] == true)
+                {
+                    output = output + EMPTY + H_SPACER_STRING;
                 }
             }
             output = output + V_SPACER_STRING;

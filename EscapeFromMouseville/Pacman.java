@@ -14,6 +14,8 @@ public class Pacman
     private static final int DEFAULT_X = 2;
     private static final int DEFAULT_Y = 2;
     private static final String ERROR_MOVE = "You cannot move there.";
+    private static final String QUIT_RESPONSE = "You have quit.";
+    private static final String INVALID_CMD = "Invalid command";
 
     /**
      * Constructor for objects of class Pacman
@@ -155,5 +157,43 @@ public class Pacman
            maze.grid[x][getY()] = true;
        }
        else System.out.println(ERROR_MOVE);
+    }
+    
+    /**
+     * Process user input: character 
+     * 'w' means move up character 
+     * 'z' means move down character
+     * 'a' means move left character 
+     * 's' means move right character
+     * 'm' means drop a mousetrap
+     */
+    public void processCommand(char c) 
+    {
+        if (c == 'w')
+        {
+            moveUp();
+        }
+        else if (c == 'z')
+        {
+            moveDown();
+        }
+        else if (c == 'a')
+        {
+            moveLeft();
+        }
+        else if (c == 's')
+        {
+            moveRight();
+        }
+        else if (c == 'q')
+        {
+            System.out.print("\f"); //form feed "clears" the display (At least on Mac).
+            System.out.println(QUIT_RESPONSE);
+            System.exit(0);
+        }
+        else
+        {
+            System.out.println(INVALID_CMD);
+        }
     }
 }
