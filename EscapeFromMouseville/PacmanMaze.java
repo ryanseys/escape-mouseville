@@ -2,12 +2,12 @@ import java.util.ArrayList;
 /**
  * Write a description of class PacmanMaze here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Seys
+ * @version 1.0
  */
 public class PacmanMaze
 {
-    // instance variables - replace the example below with your own
+    // instance variables
     private int x;
     public static final int SIZE = 5;
     public boolean grid[][];
@@ -36,8 +36,8 @@ public class PacmanMaze
     }
     
     /**
-     * Fetch and return the elephant object.
-     * @return A reference to the elephant.
+     * Fetch and return the Pacman object.
+     * @return A reference to the pacman.
      */
     public Pacman getPacman()
     {
@@ -105,22 +105,31 @@ public class PacmanMaze
     }
     
     /**
-     * Has the elephant reached the exit yet.
-     * @return true if the elephant has reached the exit.
+     * Has Pacman reached the exit yet.
+     * @return true if Pacman has reached the exit.
      */
     public boolean hasWon()
     {
         // if all dots are gone. (all grid are true)
-        return false;
+        for(int j = 0; j < SIZE; j++)
+        {
+            for(int i = 0; i < SIZE; i++)
+            {
+                if (grid[i][j] == false)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;          
     }
     
     /**
      * Returns a string representation of the grid: 
-     * - put an "M" at the location of a mouse.
-     * - put an "X" at the location of the exit; 
-     * - put a "E" if the elephant is at a given coordinate; 
-     * - otherwise, put a "T" if there's a mousetrap at that coordinate; 
-     * - otherwise, just print a dot "."
+     * - put an "G" at the location of a Ghost
+     * - put a "P" if Pacman is at a given coordinate; 
+     * - print an "o" for an uneaten part.
+     * - print a "." for an eaten dot.
      * @return A string representation of the grid.
      */
     public String toString()
@@ -132,21 +141,22 @@ public class PacmanMaze
             {
                 // Note: The order of the following IF statements controls precedence over which letter
                 // is displayed when two objects overlap.
-                if (hasGhostAt(i,j)) {
-                    output = output + GHOST_STRING + H_SPACER_STRING;
-                }
-                else if ((i == p.getX()) && (j == p.getY()))
-                {
-                    //elephant has precendence over traps.
+                if ((i == p.getX()) && (j == p.getY())) {
                     output = output + PAC_STRING + H_SPACER_STRING; 
+                }
+                else if (hasGhostAt(i,j))
+                {
+                    //ghost has precedence over pacman
+                    output = output + GHOST_STRING + H_SPACER_STRING;
                 }
                 else if (grid[i][j] == false)
                 {
-                        //empty spot
+                        //non-eaten yet.
                         output = output + DOT + H_SPACER_STRING;
                 }
                 else if (grid[i][j] == true)
                 {
+                    //eaten
                     output = output + EMPTY + H_SPACER_STRING;
                 }
             }
