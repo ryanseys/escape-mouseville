@@ -1,4 +1,3 @@
-
 /**
  * A Ghost chases Pacman around a PacmanGame.
  * 
@@ -7,7 +6,7 @@
  */
 public class Ghost
 {
-    // instance variables - replace the example below with your own
+    // instance variables
     private int x;
     private int y;
     private PacmanMaze maze;
@@ -103,27 +102,29 @@ public class Ghost
      */
     public void move()
     {
-        // Four cases: Move left, right, up or down of Elephant.
+        // Four cases: Move left, right, up or down of Pacman.
         // quite possibly the laziest move algorithm ever.
-        if (this.getY() > maze.getPacman().getY()) //elephant is above
+        // although lazy, this algorithm is very efficient
+        // making it very hard to win.
+        if (this.getY() > maze.getPacman().getY()) //pacman is above
         { 
             y -= 1; //move up
         }
-        else if (this.getY() < maze.getPacman().getY()) //elephant is below
+        else if (this.getY() < maze.getPacman().getY()) //pacman is below
         {
             y += 1; //move down
         }
-        else if (this.getX() < maze.getPacman().getX()) //elephant on right
+        else if (this.getX() < maze.getPacman().getX()) //pacman on right
         {
             x += 1; //move right
         }
-        else if (this.getX() > maze.getPacman().getX()) //elephant on left
+        else if (this.getX() > maze.getPacman().getX()) //pacman on left
         {
             x -= 1; //move left
         }
         else
         {
-            //ON TOP OF ELEPHANT! :O (this is handled elsewhere but functionality can be added here).
+            //ON TOP OF PACMAN! :O (this is handled elsewhere but functionality can be added here).
         }
     }
 }

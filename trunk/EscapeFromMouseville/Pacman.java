@@ -1,13 +1,13 @@
-
 /**
- * Write a description of class Pacman here.
+ * Pacman tries to collect all the dots from the gameboard
+ * without getting attacked by the ghost that is following him.
  * 
  * @author Ryan Seys 
- * @version 0.1
+ * @version 1.0
  */
 public class Pacman
 {
-    // instance variables - replace the example below with your own
+    // instance variables
     private int x;
     private int y;
     private PacmanMaze maze;
@@ -39,9 +39,9 @@ public class Pacman
     }
     
     /**
-     * Get the X-coordinate of the Elephant.
+     * Get the X-coordinate of Pacman.
      * 
-     * @return The x-coordinate of the elephant.
+     * @return The x-coordinate of pacman.
      */
     public int getX()
     {
@@ -49,9 +49,9 @@ public class Pacman
     }
     
     /**
-     * Get the Y-coordinate of the Elephant.
+     * Get the Y-coordinate of Pacman.
      * 
-     * @return The y-coordinate of the elephant.
+     * @return The y-coordinate of pacman.
      */
     public int getY()
     {
@@ -62,9 +62,9 @@ public class Pacman
      * Tests to see if the move is valid: can't go outside the bounds, 
      * and can't jump or move diagonally.
      * 
-     * @param i The x value of where you want the elephant to go.
-     * @param j The y value of where you want the elephant to go.
-     * @return true if the elephant can move there.
+     * @param i The x value of where you want pacman to go.
+     * @param j The y value of where you want pacman to go.
+     * @return true if pacman can move there.
      */
     public boolean canGoTo(int i, int j)
     {
@@ -165,7 +165,6 @@ public class Pacman
      * 'z' means move down character
      * 'a' means move left character 
      * 's' means move right character
-     * 'm' means drop a mousetrap
      */
     public void processCommand(char c) 
     {

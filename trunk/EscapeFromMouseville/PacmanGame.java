@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class PacmanGame
 {
-    // instance variables - replace the example below with your own
+    // instance variables
     protected PacmanMaze maze;
     protected Pacman p;
 
@@ -23,8 +23,8 @@ public class PacmanGame
 
     /**
      * Outputs the current state of the maze - 
-     * Gets console input from the user to determine the elephant's next move.
-     * (keys to move, "m" to drop a mousetrap, "q" to quit)
+     * Gets console input from the user to determine pacman's next move.
+     * (keys to move, "q" to quit)
      * Until game is won or lost or the user quit.
      */
     public void play()
@@ -37,7 +37,7 @@ public class PacmanGame
             Scanner s = new Scanner(System.in);
             command = s.nextLine().charAt(0);
             maze.p.processCommand(command);
-            //move all the mice.
+            //move all the ghosts
             for (Ghost g : maze.getGhosts())
             {
                 g.move();
