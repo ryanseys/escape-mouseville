@@ -1,30 +1,27 @@
 import java.util.Scanner;
 /**
- * This class basically "runs" the game through its play() method.
+ * Write a description of class Game here.
  * 
- * @author Ryan Seys 
- * @version 1.0
+ * @author (your name) 
+ * @version (a version number or a date)
  */
-public class PacmanGame
+public class Game
 {
-    // instance variables
-    protected PacmanMaze maze;
-    protected Pacman p;
+    // instance variables - replace the example below with your own
+    private Maze maze;
 
     /**
-     * Constructor for objects of class PacmanGame
+     * Constructor for objects of class Game
      */
-    public PacmanGame()
+    public Game()
     {
-        // initialise instance variables
-        maze = new PacmanMaze();
-        p = new Pacman(maze);
+        maze = new Maze();
     }
 
     /**
      * Outputs the current state of the maze - 
-     * Gets console input from the user to determine pacman's next move.
-     * (keys to move, "q" to quit)
+     * Gets console input from the user to determine the elephant's next move.
+     * (keys to move, "m" to drop a mousetrap, "q" to quit)
      * Until game is won or lost or the user quit.
      */
     public void play()
@@ -37,10 +34,10 @@ public class PacmanGame
             Scanner s = new Scanner(System.in);
             command = s.nextLine().charAt(0);
             maze.p.processCommand(command);
-            //move all the ghosts
-            for (Ghost g : maze.getGhosts())
+            //move all the mice.
+            for (Monster m : maze.getMonsters())
             {
-                g.move();
+                m.move();
             }
             maze.resolve();
             if (maze.hasLost())
@@ -55,5 +52,14 @@ public class PacmanGame
             }
             
         }
+    }
+    
+    /**
+     * Launches the game by instantiating a new game and calling play() on it.
+     */
+    public static void main(String[] args)
+    {
+        Game g = new Game();
+        g.play();
     }
 }
