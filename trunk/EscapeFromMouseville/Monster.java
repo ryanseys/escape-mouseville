@@ -1,52 +1,55 @@
-
 /**
- * Write a description of class Monster here.
+ * A Monster is a creature that chases players!
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Seys
+ * @version 1.0
  */
 public class Monster extends Creature
 {
 
-    /**
-     * Constructor for objects of class Monster
-     */
-    public Monster(Maze m)
-    {
-        super(m);
-    }
+   /**
+   * Assign the maze, and give an initial position (0, 0)
+   */
+   public Monster(Maze m)
+   {
+       super(m);
+   }
 
+   /**
+   * Assign the maze and set the coordinates to 
+   * the ones supplied by the parameters.
+   */
    public Monster(int x, int y, Maze m)
    {
        super(x, y, m);
    }
    
    /**
-     * Move one step in the general direction of the elephant.
+     * Move one step in the general direction of the player.
      */
     public void move()
     {
-        // Four cases: Move left, right, up or down of Elephant.
+        // Four cases: Move left, right, up or down of Player.
         // quite possibly the laziest move algorithm ever.
-        if (this.getY() > maze.getPlayer().getY()) //elephant is above
+        if (this.getY() > maze.getPlayer().getY()) //player is above
         { 
             y -= 1; //move up
         }
-        else if (this.getY() < maze.getPlayer().getY()) //elephant is below
+        else if (this.getY() < maze.getPlayer().getY()) //player is below
         {
             y += 1; //move down
         }
-        else if (this.getX() < maze.getPlayer().getX()) //elephant on right
+        else if (this.getX() < maze.getPlayer().getX()) //player on right
         {
             x += 1; //move right
         }
-        else if (this.getX() > maze.getPlayer().getX()) //elephant on left
+        else if (this.getX() > maze.getPlayer().getX()) //player on left
         {
             x -= 1; //move left
         }
         else
         {
-            //ON TOP OF ELEPHANT! :O (this is handled elsewhere but functionality can be added here).
+            //ON TOP OF PLAYER! :O (this is handled elsewhere but functionality can be added here).
         }
     }
 }
