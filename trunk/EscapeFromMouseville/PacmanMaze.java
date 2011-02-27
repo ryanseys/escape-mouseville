@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class PacmanMaze extends Maze
 {
     // instance variables
-    public Pacman p;
     private static final String GHOST_STRING = "G";
     private static final String PAC_STRING = "P";
     private static final String DOT = "o";
