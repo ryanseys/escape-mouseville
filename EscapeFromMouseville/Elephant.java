@@ -8,19 +8,13 @@
  * @author Ryan Seys
  * @version 1.1
  */
-public class Elephant
+public class Elephant extends Player
 {
     // instance variables
-    private int x;
-    private int y;
     private int mousetraps;
-    private Mouseville maze;
-    private static final int DEFAULT_X = 2;
-    private static final int DEFAULT_Y = 2;
     private static final int DEFAULT_MOUSETRAPS = 3;
     private static final String INVALID_CMD = "Invalid command";
     private static final String QUIT_RESPONSE = "You have quit.";
-    private static final String ERROR_MOVE = "You cannot move there.";
     private static final String NO_MTRAPS = "You don't have any more mousetraps left.";
     
     /**
@@ -28,10 +22,8 @@ public class Elephant
      */
     public Elephant(int x, int y, Mouseville m)
     {
-        this.x = x;
-        this.y = y;
+        super(x, y, m);
         mousetraps = DEFAULT_MOUSETRAPS;
-        maze = m;
     }
     
     /**
@@ -40,30 +32,8 @@ public class Elephant
     public Elephant(Mouseville m)
     {
         // initialise instance variables
-        maze = m;
-        x = DEFAULT_X;
-        y = DEFAULT_Y;
+        super(m);
         mousetraps = DEFAULT_MOUSETRAPS;
-    }
-    
-    /**
-     * Get the X-coordinate of the Elephant.
-     * 
-     * @return The x-coordinate of the elephant.
-     */
-    public int getX()
-    {
-        return x;
-    }
-    
-    /**
-     * Get the Y-coordinate of the Elephant.
-     * 
-     * @return The y-coordinate of the elephant.
-     */
-    public int getY()
-    {
-        return y;
     }
     
     /**
@@ -76,102 +46,6 @@ public class Elephant
         return mousetraps;
     }
     
-    /**
-     * Tests to see if the move is valid: can't go outside the bounds, 
-     * and can't jump or move diagonally.
-     * 
-     * @param i The x value of where you want the elephant to go.
-     * @param j The y value of where you want the elephant to go.
-     * @return true if the elephant can move there.
-     */
-    public boolean canGoTo(int i, int j)
-    {
-        //you can subtract or add from one or the other of the two coordinates but not both. (4 cases)
-        if (getY() == j)
-        {
-            //check x
-            if ((getX() - 1) == i)
-            {
-                if ((i <= (maze.SIZE - 1)) && (i >= 0)) //not out of bounds
-                {
-                    return true;
-                }
-            }
-            else if ((getX() + 1) == i)
-            {
-                if ((i <= (maze.SIZE - 1)) && (i >= 0)) //not out of bounds
-                {
-                    return true;
-                }
-            }
-        }
-        else if (getX() == i)
-        {
-            if ((getY() - 1) == j)
-            {
-                if ((j <= (maze.SIZE - 1)) && (j >= 0)) //not out of bounds
-                {
-                    return true;
-                }
-            }
-            else if ((getY() + 1) == j)
-            {
-                if ((j <= (maze.SIZE - 1)) && (j >= 0)) //not out of bounds
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    
-    /**
-     * Move up if possible.
-     */
-    public void moveUp()
-    {
-       if(canGoTo(getX(),(getY() - 1)))
-       {
-           y = (getY() - 1);
-       }
-       else System.out.println(ERROR_MOVE);
-    }
-    
-    /**
-     * Move down if possible.
-     */
-    public void moveDown()
-    {
-       if(canGoTo(getX(),(getY() + 1)))
-       {
-           y = (getY() + 1);
-       }
-       else System.out.println(ERROR_MOVE);
-    }
-    
-    /**
-     * Move left if possible.
-     */
-    public void moveLeft()
-    {
-       if(canGoTo((getX() - 1),getY()))
-       {
-           x = (getX() - 1);
-       }
-       else System.out.println(ERROR_MOVE);
-    }
-    
-    /**
-     * Move right if possible.
-     */
-    public void moveRight()
-    {
-       if(canGoTo((getX() + 1),getY()))
-       {
-           x = (getX() + 1);
-       }
-       else System.out.println(ERROR_MOVE);
-    }
     
     /**
      * Drop a mousetrap at the current coordiante 
@@ -181,7 +55,7 @@ public class Elephant
     {
         if (inventory() > 0)
         {
-            maze.setMousetrap(getX(), getY());
+            maze.grid[getX()][getY()] = true;
             mousetraps = inventory() - 1;
         }
         else System.out.println(NO_MTRAPS);

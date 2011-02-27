@@ -7,25 +7,9 @@ import java.util.ArrayList;
  * @author Ryan Seys
  * @version 1.0
  */
-public class Mouseville
+public class Mouseville extends Maze
 {
     // instance variables
-    public static final int SIZE = 5;
-    public boolean grid[][];
-    public Elephant e;
-    private ArrayList<Mouse> mice;
-    private static final int DEFAULT_EXIT_X = 3;
-    private static final int DEFAULT_EXIT_Y = 4;
-    private static final String MOUSE_STRING = "M";
-    private static final String EXIT_STRING = "X";
-    private static final String ELEPHANT_STRING = "E";
-    private static final String TRAP_STRING = "T";
-    private static final String EMPTY_SPACE_STRING = ".";
-    // horizontal spacer to make it look like a square
-    private static final String H_SPACER_STRING = "   "; 
-    // vertical spacer to make it look like a square
-    private static final String V_SPACER_STRING = "\n\n"; 
-    private static final String COMMAND_REQUEST = "Enter a command: ";
     Point exit;
     
     /**
@@ -37,57 +21,10 @@ public class Mouseville
     public Mouseville()
     {
         //initialized a grid full of false values
-        mice = new ArrayList<Mouse>();
-        Mouse m1 = new Mouse(this); //create a mouse
-        mice.add(m1); //add it to the list
-        grid = new boolean[SIZE][SIZE];
-        e = new Elephant(this);
+        super();
         exit = new Point(DEFAULT_EXIT_X,DEFAULT_EXIT_Y); // exit is given an set point. this can be changed later.
     }
 
-    /**
-     * Fetch and return the elephant object.
-     * @return A reference to the elephant.
-     */
-    public Elephant getElephant()
-    {
-        return e;
-    }
-    
-    /**
-     * All the mice created.
-     * @return The ArrayList of mice.
-     */
-    public ArrayList<Mouse> getMice() 
-    {
-        return mice;
-    }
-    
-    /**
-     * Add a mouse to the list of mice
-     * @param Mouse to add.
-     */
-    public void addMouse(Mouse m)
-    {
-        mice.add(m);
-    }
-    
-    /**
-     * Whether or not there is a mouse at the coordinate.
-     * @return True if there is a mouse there, false if there isn't.
-     */
-    public boolean hasMouseAt(int i, int j)
-    {
-        for (Mouse m : mice)
-        {
-            if ((i == m.getX()) && (j == m.getY()))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    
     /**
      * "Resolves" the new state of the game.
      */
@@ -95,18 +32,18 @@ public class Mouseville
     {
         int index = 0;
         boolean toRemove = false;
-        for (Mouse m : mice)
+        for (Monster m : monsters)
         {
-             if (hasMouseTrap(m.getX(), m.getY()))
+             if (hasDotAt(m.getX(), m.getY()))
              {
                  grid[m.getX()][m.getY()] = false; //remove trap from grid.
-                 index = mice.indexOf(m); //remove mouse from list.
+                 index = monsters.indexOf(m); //remove mouse from list.
                  toRemove = true;
              }
         }
         if (toRemove)
         {
-            mice.remove(index); //works only with 1 value right now
+            monsters.remove(index); //works only with 1 value right now
         }
         
         System.out.print("\f"); //form feed "clears" the console (at least on Mac).
@@ -114,22 +51,6 @@ public class Mouseville
         System.out.print(COMMAND_REQUEST);
     }
     
-    /**
-     * Has the elephant got caught by a mouse yet.
-     * @return true if the elephant has got caught.
-     */
-    public boolean hasLost()
-    {
-        for (Mouse m : mice)
-        {
-            if (hasMouseAt(e.getX(), e.getY()))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /**
      * Set a mousetrap at the indicated coordinate.
      * @param  x   x-coordinate to set the trap at.
@@ -141,27 +62,12 @@ public class Mouseville
     }
     
     /**
-     * Checks if a coordinate has a mousetrap on it.
-     * @param  x   x-coordinate to check for a trap.
-     * @param  y   y-coordinate to check for a trap.
-     * @return true if there is a mousetrap at the indicated coordinate.
-     */
-    public boolean hasMouseTrap(int x, int y)
-    {
-        if(grid[x][y] == true)
-        {
-            return true;
-        }
-        else return false;
-    }
-    
-    /**
      * Has the elephant reached the exit yet.
      * @return true if the elephant has reached the exit.
      */
     public boolean hasWon()
     {
-        if ((exit.getX() == e.getX()) && (exit.getY() == e.getY()))
+        if ((exit.getX() == p.getX()) && (exit.getY() == p.getY()))
         {
             return true;
         }
@@ -186,7 +92,7 @@ public class Mouseville
             {
                 // Note: The order of the following IF statements controls precedence over which letter
                 // is displayed when two objects overlap.
-                if (hasMouseAt(i,j)) {
+                if (hasMonster(i,j)) {
                     output = output + MOUSE_STRING + H_SPACER_STRING;
                 }
                 else if ((i == exit.getX()) && (j == exit.getY()))
@@ -194,7 +100,7 @@ public class Mouseville
                     //exit has precendence over elephant
                     output = output + EXIT_STRING + H_SPACER_STRING; 
                 }
-                else if ((i == e.getX()) && (j == e.getY()))
+                else if ((i == p.getX()) && (j == p.getY()))
                 {
                     //elephant has precendence over traps.
                     output = output + ELEPHANT_STRING + H_SPACER_STRING; 
