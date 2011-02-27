@@ -1,19 +1,18 @@
-
 /**
- * Write a description of class Creature here.
+ * Creature represents anything that moves in the maze.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Seys
+ * @version 1.0
  */
 public class Creature
 {
     // instance variables - replace the example below with your own
     protected int x;
     protected int y;
-    public Maze maze;
+    protected Maze maze;
 
     /**
-     * Constructor for objects of class Creature
+     * Assign the maze, and give an initial position (0, 0)
      */
     public Creature(Maze m)
     {
@@ -23,7 +22,7 @@ public class Creature
     }
     
     /**
-     * Constructor for objects of class Creature
+     * Assign the maze and set the coordinates to the ones supplied by the parameters
      */
     public Creature(int x, int y, Maze m)
     {
@@ -33,9 +32,7 @@ public class Creature
     }
     
     /**
-     * Get the X-coordinate of the Elephant.
-     * 
-     * @return The x-coordinate of the elephant.
+     * @return The x-coordinate of the creature.
      */
     public int getX()
     {
@@ -43,9 +40,7 @@ public class Creature
     }
     
     /**
-     * Get the Y-coordinate of the Elephant.
-     * 
-     * @return The y-coordinate of the elephant.
+     * @return The y-coordinate of the creature.
      */
     public int getY()
     {
@@ -56,9 +51,9 @@ public class Creature
      * Tests to see if the move is valid: can't go outside the bounds, 
      * and can't jump or move diagonally.
      * 
-     * @param i The x value of where you want the elephant to go.
-     * @param j The y value of where you want the elephant to go.
-     * @return true if the elephant can move there.
+     * @param i The x value of where you want the creature to go.
+     * @param j The y value of where you want the creature to go.
+     * @return true if the creature can move there.
      */
     public boolean canGoTo(int i, int j)
     {
