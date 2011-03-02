@@ -6,7 +6,6 @@
  */
 public class Creature
 {
-    // instance variables - replace the example below with your own
     protected int x;
     protected int y;
     protected Maze maze;

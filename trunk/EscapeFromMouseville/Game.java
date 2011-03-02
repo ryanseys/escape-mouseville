@@ -7,7 +7,6 @@ import java.util.Scanner;
  */
 public class Game
 {
-    // instance variables - replace the example below with your own
     private Maze maze;
 
     /**

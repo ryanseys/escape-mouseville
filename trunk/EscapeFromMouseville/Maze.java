@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.awt.*; // The Point class needs this.
 /**
- * Write a description of class Maze here.
+ * Maze is essentially a grid of booleans 
+ * representing the terrain of "dots" a 
+ * reference to the player, a bunch of monsters.
  * 
  * @author Ryan Seys 
  * @version 1.0
@@ -11,7 +13,7 @@ public class Maze
     // instance variables - replace the example below with your own
     public static final int SIZE = 5;
     public boolean grid[][];
-    public ArrayList<Point> walls;
+    protected ArrayList<Point> walls;
     protected Player p;
     protected ArrayList<Monster> monsters;
     public static final int DEFAULT_PLAYER_X = 4;

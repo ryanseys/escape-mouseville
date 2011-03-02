@@ -1,19 +1,17 @@
-
 /**
- * Write a description of class Player here.
+ * Player represents the player, which is a creature that moves based on the user's input 
+ * (for example, Pacman can be substituted with Player)
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Seys
+ * @version 1.0
  */
 public class Player extends Creature
 {
-    // instance variables - replace the example below with your own
-    
     private static final String ERROR_MOVE = "You cannot move there.";
     private static final String INVALID_CMD = "Invalid command";
     private static final String QUIT_RESPONSE = "You have quit.";
     /**
-     * Constructor for objects of class Player
+     *  Assign the maze, and give an initial position (0, 0).
      */
     public Player(Maze m)
     {
@@ -21,7 +19,7 @@ public class Player extends Creature
     }
 
     /**
-     * Constructor for objects of class Player
+     * Assign the maze and set the coordinates to the ones supplied by the parameters.
      */
     public Player(int x, int y, Maze m)
     {
