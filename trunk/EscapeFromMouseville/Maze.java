@@ -3,23 +3,25 @@ import java.awt.*; // The Point class needs this.
 /**
  * Write a description of class Maze here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Seys 
+ * @version 1.0
  */
 public class Maze
 {
     // instance variables - replace the example below with your own
     public static final int SIZE = 5;
     public boolean grid[][];
+    public ArrayList<Point> walls;
     protected Player p;
     protected ArrayList<Monster> monsters;
     public static final int DEFAULT_EXIT_X = 3;
-    public static final int DEFAULT_EXIT_Y = 4;
+    public static final int DEFAULT_EXIT_Y = 3;
     public static final String MOUSE_STRING = "M";
     public static final String EXIT_STRING = "X";
     public static final String ELEPHANT_STRING = "E";
     public static final String TRAP_STRING = "T";
     public static final String EMPTY_SPACE_STRING = ".";
+    public static final String WALL_STRING = "W";
     // horizontal spacer to make it look like a square
     public static final String H_SPACER_STRING = "   "; 
     // vertical spacer to make it look like a square
@@ -33,14 +35,24 @@ public class Maze
     {
         p = new Player(this);
         monsters = new ArrayList<Monster>();
+        walls = new ArrayList<Point>();
         Monster m1 = new Monster(this); //create a mouse
         monsters.add(m1); //add it to the list
         grid = new boolean[SIZE][SIZE];
+        
+        //adding walls for testing
+        addWall(1,1);
+        addWall(1,2);
+        addWall(1,3);
+        addWall(1,4);
+        addWall(2,4);
+        addWall(3,4);
+        addWall(4,4);
     }
 
     /**
-     * Fetch and return the elephant object.
-     * @return A reference to the elephant.
+     * Fetch and return the Player object.
+     * @return A reference to the Player.
     */
     public Player getPlayer()
     {
@@ -48,8 +60,8 @@ public class Maze
     }
     
     /**
-     * All the mice created.
-     * @return The ArrayList of mice.
+     * All the monsters created.
+     * @return The ArrayList of monsters
     */
     public ArrayList<Monster> getMonsters() 
     {
@@ -57,8 +69,8 @@ public class Maze
     }
     
     /**
-     * Add a mouse to the list of mice
-     * @param Mouse to add.
+     * Add a monster to the list of monsters.
+     * @param Monster to add.
     */
     public void addMonster(Monster m)
     {
@@ -88,7 +100,7 @@ public class Maze
     {
         for (Monster m : monsters)
         {
-            if (hasMonster(p.getX(), p.getY()))
+            if (hasMonster(getPlayer().getX(), getPlayer().getY()))
             {
                 return true;
             }
@@ -114,52 +126,12 @@ public class Maze
     }
     
      /**
-     * Returns a string representation of the grid: 
-     * - put an "M" at the location of a mouse.
-     * - put an "X" at the location of the exit; 
-     * - put a "E" if the elephant is at a given coordinate; 
-     * - otherwise, put a "T" if there's a mousetrap at that coordinate; 
-     * - otherwise, just print a dot "."
+     * Returns a string representation of the grid.
      * @return A string representation of the grid.
     */
     public String toString()
     {
         String output = ""; //initialize
-        for(int j = 0; j < SIZE; j++)
-        {
-            for(int i = 0; i < SIZE; i++)
-            {
-                // Note: The order of the following IF statements controls precedence over which letter
-                // is displayed when two objects overlap.
-                if (hasMonster(i,j)) {
-                    output = output + MOUSE_STRING + H_SPACER_STRING;
-                }
-//                 else if ((i == exit.getX()) && (j == exit.getY()))
-//                 {
-//                     //exit has precendence over elephant
-//                     output = output + EXIT_STRING + H_SPACER_STRING; 
-//                 }
-                else if ((i == p.getX()) && (j == p.getY()))
-                {
-                    //elephant has precendence over traps.
-                    output = output + ELEPHANT_STRING + H_SPACER_STRING; 
-                }
-                else
-                {
-                    if (grid[i][j] == false)
-                    {
-                        //empty spot
-                        output = output + EMPTY_SPACE_STRING + H_SPACER_STRING;
-                    }
-                    else if (grid[i][j] == true)
-                    {
-                        //trap!
-                        output = output + TRAP_STRING + H_SPACER_STRING;
-                    }
-                }
-            }
-            output = output + V_SPACER_STRING;
-        }
         return output;
     }
     
@@ -176,6 +148,17 @@ public class Maze
             return true;
         }
         else return false;
+    }
+    
+    public boolean hasWallAt(int x, int y)
+    {
+        for(Point w : walls) {
+            if ((w.getX() == x) && (w.getY() == y))
+            {
+                return true;
+            }
+        }
+        return false;
     }
     
     /**
@@ -202,6 +185,17 @@ public class Maze
         System.out.print("\f"); //form feed "clears" the console (at least on Mac).
         print();
         System.out.print(COMMAND_REQUEST);
+    }
+    
+    public ArrayList<Point> getWalls()
+    {
+        return walls;
+    }
+    
+    public void addWall(int x, int y)
+    {
+        getWalls().add(new Point(x,y));
+        grid[x][y] = true;
     }
     
     /**

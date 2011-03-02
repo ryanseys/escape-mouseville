@@ -95,6 +95,9 @@ public class Mouseville extends Maze
                 if (hasMonster(i,j)) {
                     output = output + MOUSE_STRING + H_SPACER_STRING;
                 }
+                else if (hasWallAt(i,j)) {
+                    output = output + WALL_STRING + H_SPACER_STRING;
+                }
                 else if ((i == exit.getX()) && (j == exit.getY()))
                 {
                     //exit has precendence over elephant
@@ -122,13 +125,5 @@ public class Mouseville extends Maze
             output = output + V_SPACER_STRING;
         }
         return output;
-    }
-    
-    /**
-     * Ouput a string representation of the grid to the console.
-     */
-    public void print()
-    {
-        System.out.println(toString());
     }
 }

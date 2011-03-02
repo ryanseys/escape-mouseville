@@ -1,9 +1,9 @@
 import java.util.Scanner;
 /**
- * Write a description of class Game here.
+ * This class basically "runs" the game through its play() method.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Seys
+ * @version 1.0
  */
 public class Game
 {
@@ -13,9 +13,9 @@ public class Game
     /**
      * Constructor for objects of class Game
      */
-    public Game()
+    public Game(Maze m)
     {
-        maze = new Maze();
+        maze = m;
     }
 
     /**
@@ -37,7 +37,7 @@ public class Game
             //move all the mice.
             for (Monster m : maze.getMonsters())
             {
-                m.move();
+                //m.move(); //comment this out if you want to test the game winnability.
             }
             maze.resolve();
             if (maze.hasLost())
@@ -50,7 +50,6 @@ public class Game
                 System.out.println("YOU WON!");
                 done = true;
             }
-            
         }
     }
     
@@ -59,7 +58,12 @@ public class Game
      */
     public static void main(String[] args)
     {
-        Game g = new Game();
-        g.play();
+        Mouseville m = new Mouseville();
+        m.p.processCommand('s');
+        m.p.processCommand('z');
+        if (m.p.getY() == 0)
+        {
+            System.out.println("GOOD!");
+        }
     }
 }

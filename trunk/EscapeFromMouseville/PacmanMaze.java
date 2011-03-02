@@ -10,7 +10,7 @@ public class PacmanMaze extends Maze
     // instance variables
     private static final String GHOST_STRING = "G";
     private static final String PAC_STRING = "P";
-    private static final String DOT = "o";
+    private static final String DOT = "D";
     private static final String EMPTY = ".";
 
     /**
@@ -26,14 +26,15 @@ public class PacmanMaze extends Maze
      */
     public void resolve()
     {
+        eat(p.getX(), p.getY());
         System.out.print("\f"); //form feed "clears" the console (at least on Mac).
         print();
         System.out.print(COMMAND_REQUEST);
     }
     
     /**
-     * Has Pacman reached the exit yet.
-     * @return true if Pacman has reached the exit.
+     * Has Pacman eaten all the dots yet.
+     * @return true if Pacman has eaten all the dots.
      */
     public boolean hasWon()
     {
@@ -42,7 +43,7 @@ public class PacmanMaze extends Maze
         {
             for(int i = 0; i < SIZE; i++)
             {
-                if (grid[i][j] == false)
+                if (!(hasDotAt(i,j)))
                 {
                     return false;
                 }
@@ -50,12 +51,17 @@ public class PacmanMaze extends Maze
         }
         return true;          
     }
-    
+
+    public void eat(int i, int j) 
+    {
+        grid[i][j] = true;
+    }
+
     /**
      * Returns a string representation of the grid: 
      * - put an "G" at the location of a Ghost
      * - put a "P" if Pacman is at a given coordinate; 
-     * - print an "o" for an uneaten part.
+     * - print an "D" for an uneaten dot.
      * - print a "." for an eaten dot.
      * @return A string representation of the grid.
      */
@@ -75,6 +81,9 @@ public class PacmanMaze extends Maze
                 {
                     //ghost has precedence over pacman
                     output = output + GHOST_STRING + H_SPACER_STRING;
+                }
+                else if (hasWallAt(i,j)) {
+                    output = output + WALL_STRING + H_SPACER_STRING;
                 }
                 else if (grid[i][j] == false)
                 {

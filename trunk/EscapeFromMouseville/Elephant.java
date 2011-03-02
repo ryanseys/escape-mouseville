@@ -46,7 +46,6 @@ public class Elephant extends Player
         return mousetraps;
     }
     
-    
     /**
      * Drop a mousetrap at the current coordiante 
      * update the inventory accordingly!
