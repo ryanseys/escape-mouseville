@@ -37,7 +37,7 @@ public class Game
             //move all the mice.
             for (Monster m : maze.getMonsters())
             {
-                //m.move(); //comment this out if you want to test the game winnability.
+                m.move(); //comment this out if you want to test the game winnability.
             }
             maze.resolve();
             if (maze.hasLost())
@@ -59,11 +59,7 @@ public class Game
     public static void main(String[] args)
     {
         Mouseville m = new Mouseville();
-        m.p.processCommand('s');
-        m.p.processCommand('z');
-        if (m.p.getY() == 0)
-        {
-            System.out.println("GOOD!");
-        }
+        Game g = new Game(m);
+        g.play();
     }
 }
