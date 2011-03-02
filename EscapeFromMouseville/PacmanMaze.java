@@ -1,20 +1,19 @@
 import java.util.ArrayList;
 /**
- * Write a description of class PacmanMaze here.
+ * PacmanMaze is a kind of maze that keeps track of containing dots.
  * 
  * @author Ryan Seys
  * @version 1.0
  */
 public class PacmanMaze extends Maze
 {
-    // instance variables
     private static final String GHOST_STRING = "G";
     private static final String PAC_STRING = "P";
     private static final String DOT = "D";
     private static final String EMPTY = ".";
 
     /**
-     * Constructor for objects of class PacmanMaze
+     * Initialize the dots and the count of dots left.
      */
     public PacmanMaze()
     {
@@ -51,7 +50,10 @@ public class PacmanMaze extends Maze
         }
         return true;          
     }
-
+    
+    /**
+     * Removes a 'dot' indicated by the supplied coordinates from the Grid.
+     */
     public void eat(int i, int j) 
     {
         grid[i][j] = true;

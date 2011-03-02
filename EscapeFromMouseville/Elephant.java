@@ -10,7 +10,6 @@
  */
 public class Elephant extends Player
 {
-    // instance variables
     private int mousetraps;
     private static final int DEFAULT_MOUSETRAPS = 3;
     private static final String INVALID_CMD = "Invalid command";

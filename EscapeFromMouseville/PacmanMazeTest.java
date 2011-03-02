@@ -1,10 +1,8 @@
-
-
 /**
- * The test class PacmanMazeTest.
+ * To Test Pacman Class
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @author  Ryan Seys
+ * @version 1.0
  */
 public class PacmanMazeTest extends junit.framework.TestCase
 {
@@ -12,24 +10,6 @@ public class PacmanMazeTest extends junit.framework.TestCase
      * Default constructor for test class PacmanMazeTest
      */
     public PacmanMazeTest()
-    {
-    }
-
-    /**
-     * Sets up the test fixture.
-     *
-     * Called before every test case method.
-     */
-    protected void setUp()
-    {
-    }
-
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
-    protected void tearDown()
     {
     }
 
@@ -42,4 +22,3 @@ public class PacmanMazeTest extends junit.framework.TestCase
 		assertEquals(true, pacmanMa1.hasDotAt(0, 1));
 	}
 }
-

@@ -1,10 +1,8 @@
-
-
 /**
- * The test class MousevilleTest.
+ * To Test Mouseville Class
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @author  Ryan Seys
+ * @version 1.0
  */
 public class MousevilleTest extends junit.framework.TestCase
 {
@@ -14,25 +12,7 @@ public class MousevilleTest extends junit.framework.TestCase
     public MousevilleTest()
     {
     }
-
-    /**
-     * Sets up the test fixture.
-     *
-     * Called before every test case method.
-     */
-    protected void setUp()
-    {
-    }
-
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
-    protected void tearDown()
-    {
-    }
-
+    
 	public void testWallTest()
 	{
 		Mouseville mousevil1 = new Mouseville();
