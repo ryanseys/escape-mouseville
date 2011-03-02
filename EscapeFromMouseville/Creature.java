@@ -65,14 +65,18 @@ public class Creature
             {
                 if ((i <= (maze.SIZE - 1)) && (i >= 0)) //not out of bounds
                 {
-                    return true;
+                    if(!(maze.hasWallAt(i,j))) {
+                        return true;
+                    }
                 }
             }
             else if ((getX() + 1) == i)
             {
                 if ((i <= (maze.SIZE - 1)) && (i >= 0)) //not out of bounds
                 {
-                    return true;
+                    if(!(maze.hasWallAt(i,j))) {
+                        return true;
+                    }
                 }
             }
         }
@@ -82,14 +86,18 @@ public class Creature
             {
                 if ((j <= (maze.SIZE - 1)) && (j >= 0)) //not out of bounds
                 {
-                    return true;
+                    if(!(maze.hasWallAt(i,j))) {
+                        return true;
+                    }
                 }
             }
             else if ((getY() + 1) == j)
             {
                 if ((j <= (maze.SIZE - 1)) && (j >= 0)) //not out of bounds
                 {
-                    return true;
+                    if(!(maze.hasWallAt(i,j))) {
+                        return true;
+                    }
                 }
             }
         }
