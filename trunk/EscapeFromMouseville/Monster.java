@@ -33,19 +33,31 @@ public class Monster extends Creature
         // quite possibly the laziest move algorithm ever.
         if (this.getY() > maze.getPlayer().getY()) //player is above
         { 
-            y -= 1; //move up
+            if (canGoTo(x, y - 1))
+            {
+                y -= 1;
+            }//move up
         }
         else if (this.getY() < maze.getPlayer().getY()) //player is below
         {
-            y += 1; //move down
+            if (canGoTo(x, y + 1))
+            {
+                y += 1;
+            } //move down
         }
         else if (this.getX() < maze.getPlayer().getX()) //player on right
-        {
-            x += 1; //move right
+        { 
+            if (canGoTo(x + 1, y))
+            {
+                x += 1;
+            } //move right
         }
         else if (this.getX() > maze.getPlayer().getX()) //player on left
         {
-            x -= 1; //move left
+            if (canGoTo(x - 1, y))
+            {
+                x -= 1;
+            } //move left
         }
         else
         {

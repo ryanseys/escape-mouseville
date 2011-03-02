@@ -14,6 +14,8 @@ public class Maze
     public ArrayList<Point> walls;
     protected Player p;
     protected ArrayList<Monster> monsters;
+    public static final int DEFAULT_PLAYER_X = 4;
+    public static final int DEFAULT_PLAYER_Y = 2;
     public static final int DEFAULT_EXIT_X = 3;
     public static final int DEFAULT_EXIT_Y = 3;
     public static final String MOUSE_STRING = "M";
@@ -33,7 +35,7 @@ public class Maze
      */
     public Maze()
     {
-        p = new Player(this);
+        p = new Player(DEFAULT_PLAYER_X, DEFAULT_PLAYER_Y, this);
         monsters = new ArrayList<Monster>();
         walls = new ArrayList<Point>();
         Monster m1 = new Monster(this); //create a mouse
