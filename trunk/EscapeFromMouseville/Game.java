@@ -30,6 +30,7 @@ public class Game
         maze.resolve();
         while(!done)
         {
+            
             Scanner s = new Scanner(System.in);
             command = s.nextLine().charAt(0);
             maze.p.processCommand(command);

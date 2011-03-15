@@ -99,13 +99,6 @@ public class Player extends Creature
         {
             moveRight();
         }
-        else if (c == 't')
-        {
-            if(maze instanceof Mouseville) { //only place mousetrap on mousetrap games.
-                maze.grid[getX()][getY()] = new Mousetrap();
-            }
-            else System.out.println(INVALID_CMD);
-        }
         else if (c == 'q')
         {
             System.out.print("\f"); //form feed "clears" the display (At least on Mac).

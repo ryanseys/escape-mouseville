@@ -22,7 +22,7 @@ public class Mouseville extends Maze
     public Mouseville()
     {
         //initialized a grid full of false values
-        super();
+        super("Mouseville");
         grid[DEFAULT_EXIT_X][DEFAULT_EXIT_Y] = new Exit(); // exit is given an set point. this can be changed later.
     }
 

@@ -19,7 +19,7 @@ public class Elephant extends Player
     /**
      * Assign the maze and set the coordinates to the ones supplied by the parameters
      */
-    public Elephant(int x, int y, Mouseville m)
+    public Elephant(int x, int y, Maze m)
     {
         super(x, y, m);
         mousetraps = DEFAULT_MOUSETRAPS;
@@ -28,7 +28,7 @@ public class Elephant extends Player
     /**
      * Assign the maze, and give an initial position (0, 0)
      */
-    public Elephant(Mouseville m)
+    public Elephant(Maze m)
     {
         // initialise instance variables
         super(m);
