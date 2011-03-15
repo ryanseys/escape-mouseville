@@ -70,7 +70,7 @@ public class Mouseville extends Maze
     public boolean hasWon()
     {
         if(grid[p.getX()][p.getY()] != null) {
-            if(grid[p.getX()][p.getY()].getLetter().equals("E")) {
+            if(grid[p.getX()][p.getY()].getLetter().equals("X")) {
                 return true;
             }
         }

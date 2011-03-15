@@ -99,6 +99,10 @@ public class Player extends Creature
         {
             moveRight();
         }
+        else if (c == 't')
+        {
+            maze.grid[getX()][getY()] = new Mousetrap();
+        }
         else if (c == 'q')
         {
             System.out.print("\f"); //form feed "clears" the display (At least on Mac).
