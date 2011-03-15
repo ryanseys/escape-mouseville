@@ -101,7 +101,10 @@ public class Player extends Creature
         }
         else if (c == 't')
         {
-            maze.grid[getX()][getY()] = new Mousetrap();
+            if(maze instanceof Mouseville) { //only place mousetrap on mousetrap games.
+                maze.grid[getX()][getY()] = new Mousetrap();
+            }
+            else System.out.println(INVALID_CMD);
         }
         else if (c == 'q')
         {
