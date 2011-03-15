@@ -29,21 +29,29 @@ public abstract class Maze
     /**
      * Constructor for objects of class Maze
      */
-    public Maze()
+    public Maze(String option)
     {
-        p = new Player(DEFAULT_PLAYER_X, DEFAULT_PLAYER_Y, this);
+        if(option.equals("Mouseville")){
+            p = new Elephant(DEFAULT_PLAYER_X, DEFAULT_PLAYER_Y, this);
+        }
+        else p = new Player(DEFAULT_PLAYER_X, DEFAULT_PLAYER_Y, this);
         monsters = new ArrayList<Monster>();
         Monster m1 = new Monster(this); //create a mouse
         monsters.add(m1); //add it to the list
         grid = new Item[SIZE][SIZE];
         //adding walls for testing
-//         addWall(1,1);
-//         addWall(1,2);
-//         addWall(1,3);
-//         addWall(1,4);
-//         addWall(2,4);
-//         addWall(3,4);
-//         addWall(4,4);
+        grid[1][1] = new Wall();
+        grid[1][2] = new Wall();
+        grid[1][3] = new Wall();
+        grid[1][4] = new Wall();
+        grid[2][4] = new Wall();
+        grid[3][4] = new Wall();
+        grid[4][4] = new Wall();
+    }
+    
+    public Maze()
+    {
+        this("");
     }
     
         /**
