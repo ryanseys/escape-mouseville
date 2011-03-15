@@ -6,7 +6,6 @@
  */
 public class Monster extends Creature
 {
-
    /**
    * Assign the maze, and give an initial position (0, 0)
    */

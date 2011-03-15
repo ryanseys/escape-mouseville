@@ -10,7 +10,6 @@ public class PacmanMaze extends Maze
     private static final String GHOST_STRING = "G";
     private static final String PAC_STRING = "P";
     private static final String DOT = "D";
-    private static final String EMPTY = ".";
 
     /**
      * Initialize the dots and the count of dots left.
@@ -18,6 +17,14 @@ public class PacmanMaze extends Maze
     public PacmanMaze()
     {
         super();
+        for(int j = 0; j < SIZE; j++)
+        {
+            for(int i = 0; i < SIZE; i++)
+            {
+                
+                grid[i][j] = new Dot();
+            }
+        }
     }
 
     /**
@@ -42,9 +49,11 @@ public class PacmanMaze extends Maze
         {
             for(int i = 0; i < SIZE; i++)
             {
-                if (!(hasDotAt(i,j)))
-                {
-                    return false;
+                if (grid[i][j] != null) {
+                    if(grid[i][j].getLetter().equals("D"))
+                    {
+                        return false;
+                    }
                 }
             }
         }
@@ -56,50 +65,19 @@ public class PacmanMaze extends Maze
      */
     public void eat(int i, int j) 
     {
-        grid[i][j] = true;
+        grid[i][j] = null;
     }
-
-    /**
-     * Returns a string representation of the grid: 
-     * - put an "G" at the location of a Ghost
-     * - put a "P" if Pacman is at a given coordinate; 
-     * - print an "D" for an uneaten dot.
-     * - print a "." for an eaten dot.
-     * @return A string representation of the grid.
-     */
-    public String toString()
-    {
-        String output = ""; //initialize
-        for(int j = 0; j < SIZE; j++)
-        {
-            for(int i = 0; i < SIZE; i++)
-            {
-                // Note: The order of the following IF statements controls precedence over which letter
-                // is displayed when two objects overlap.
-                if ((i == p.getX()) && (j == p.getY())) {
-                    output = output + PAC_STRING + H_SPACER_STRING; 
-                }
-                else if (hasMonster(i,j))
-                {
-                    //ghost has precedence over pacman
-                    output = output + GHOST_STRING + H_SPACER_STRING;
-                }
-                else if (hasWallAt(i,j)) {
-                    output = output + WALL_STRING + H_SPACER_STRING;
-                }
-                else if (grid[i][j] == false)
-                {
-                        //non-eaten yet.
-                        output = output + DOT + H_SPACER_STRING;
-                }
-                else if (grid[i][j] == true)
-                {
-                    //eaten
-                    output = output + EMPTY + H_SPACER_STRING;
-                }
-            }
-            output = output + V_SPACER_STRING;
+    
+    public String gridNull(int i, int j) {
+        if (hasMonster(i,j)) {
+            return GHOST_STRING;
         }
-        return output;
+        else if ((i == p.getX()) && (j == p.getY())) {
+            return PAC_STRING;  //elephant has precendence over traps.
+        }
+        else if(grid[i][j] == null) {
+            return EMPTY;
+        }
+        else return ""; //empty space
     }
 }

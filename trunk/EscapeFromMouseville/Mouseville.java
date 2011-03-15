@@ -10,8 +10,9 @@ import java.util.ArrayList;
 public class Mouseville extends Maze
 {
     // instance variables
-    Point exit;
-    
+    public static final String MOUSE_STRING = "M";
+    public static final String TRAP_STRING = "T";
+    public static final String ELEPHANT_STRING = "E";
     /**
      * Initialize the elephant, the mice, the grid, and the exit (middle of the grid).
      * - the grid is an array of booleans, where "true" means there's a mousetrap.
@@ -22,7 +23,7 @@ public class Mouseville extends Maze
     {
         //initialized a grid full of false values
         super();
-        exit = new Point(DEFAULT_EXIT_X,DEFAULT_EXIT_Y); // exit is given an set point. this can be changed later.
+        grid[DEFAULT_EXIT_X][DEFAULT_EXIT_Y] = new Exit(); // exit is given an set point. this can be changed later.
     }
 
     /**
@@ -34,9 +35,10 @@ public class Mouseville extends Maze
         boolean toRemove = false;
         for (Monster m : monsters)
         {
-             if (hasDotAt(m.getX(), m.getY()))
+             if (grid[m.getX()][m.getY()] == null);
+             else if (grid[m.getX()][m.getY()].getLetter().equals("T"))
              {
-                 grid[m.getX()][m.getY()] = false; //remove trap from grid.
+                 grid[m.getX()][m.getY()] = null; //remove trap from grid.
                  index = monsters.indexOf(m); //remove mouse from list.
                  toRemove = true;
              }
@@ -58,7 +60,7 @@ public class Mouseville extends Maze
      */
     public void setMousetrap(int x, int y) 
     {
-        grid[x][y] = true;
+        grid[x][y] = new Mousetrap();
     }
     
     /**
@@ -67,63 +69,27 @@ public class Mouseville extends Maze
      */
     public boolean hasWon()
     {
-        if ((exit.getX() == p.getX()) && (exit.getY() == p.getY()))
-        {
-            return true;
+        if(grid[p.getX()][p.getY()] != null) {
+            if(grid[p.getX()][p.getY()].getLetter().equals("E")) {
+                return true;
+            }
         }
-        else return false;
+        return false;
     }
     
     /**
-     * Returns a string representation of the grid: 
-     * - put an "M" at the location of a mouse.
-     * - put an "X" at the location of the exit; 
-     * - put a "E" if the elephant is at a given coordinate; 
-     * - otherwise, put a "T" if there's a mousetrap at that coordinate; 
-     * - otherwise, just print a dot "."
-     * @return A string representation of the grid.
+     * Returns the string associated with any object on a given space.
      */
-    public String toString()
-    {
-        String output = ""; //initialize
-        for(int j = 0; j < SIZE; j++)
-        {
-            for(int i = 0; i < SIZE; i++)
-            {
-                // Note: The order of the following IF statements controls precedence over which letter
-                // is displayed when two objects overlap.
-                if (hasMonster(i,j)) {
-                    output = output + MOUSE_STRING + H_SPACER_STRING;
-                }
-                else if (hasWallAt(i,j)) {
-                    output = output + WALL_STRING + H_SPACER_STRING;
-                }
-                else if ((i == exit.getX()) && (j == exit.getY()))
-                {
-                    //exit has precendence over elephant
-                    output = output + EXIT_STRING + H_SPACER_STRING; 
-                }
-                else if ((i == p.getX()) && (j == p.getY()))
-                {
-                    //elephant has precendence over traps.
-                    output = output + ELEPHANT_STRING + H_SPACER_STRING; 
-                }
-                else
-                {
-                    if (grid[i][j] == false)
-                    {
-                        //empty spot
-                        output = output + EMPTY_SPACE_STRING + H_SPACER_STRING;
-                    }
-                    else if (grid[i][j] == true)
-                    {
-                        //trap!
-                        output = output + TRAP_STRING + H_SPACER_STRING;
-                    }
-                }
-            }
-            output = output + V_SPACER_STRING;
+    public String gridNull(int i, int j) {
+        if (hasMonster(i,j)) {
+            return MOUSE_STRING;
         }
-        return output;
+        else if ((i == p.getX()) && (j == p.getY())) {
+            return ELEPHANT_STRING;  //elephant has precendence over traps.
+        }
+        else if(grid[i][j] == null) {
+            return EMPTY;
+        }
+        else return ""; //empty space
     }
 }

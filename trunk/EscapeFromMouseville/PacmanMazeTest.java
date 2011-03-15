@@ -13,12 +13,12 @@ public class PacmanMazeTest extends junit.framework.TestCase
     {
     }
 
-	public void testDots()
-	{
-		PacmanMaze pacmanMa1 = new PacmanMaze();
-		Player player1 = pacmanMa1.getPlayer();
-		assertEquals(false, pacmanMa1.hasDotAt(0, 1));
-		pacmanMa1.eat(0, 1);
-		assertEquals(true, pacmanMa1.hasDotAt(0, 1));
-	}
+// 	public void testDots()
+// 	{
+// 		PacmanMaze pacmanMa1 = new PacmanMaze();
+// 		Player player1 = pacmanMa1.getPlayer();
+// 		assertEquals(false, pacmanMa1.hasDotAt(0, 1));
+// 		pacmanMa1.eat(0, 1);
+// 		assertEquals(true, pacmanMa1.hasDotAt(0, 1));
+// 	}
 }
