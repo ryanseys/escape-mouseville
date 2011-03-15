@@ -8,24 +8,18 @@ import java.awt.*; // The Point class needs this.
  * @author Ryan Seys 
  * @version 1.0
  */
-public class Maze
+public abstract class Maze
 {
     // instance variables - replace the example below with your own
     public static final int SIZE = 5;
-    public boolean grid[][];
-    protected ArrayList<Point> walls;
+    public Item grid[][];
     protected Player p;
     protected ArrayList<Monster> monsters;
     public static final int DEFAULT_PLAYER_X = 4;
     public static final int DEFAULT_PLAYER_Y = 2;
     public static final int DEFAULT_EXIT_X = 3;
     public static final int DEFAULT_EXIT_Y = 3;
-    public static final String MOUSE_STRING = "M";
-    public static final String EXIT_STRING = "X";
-    public static final String ELEPHANT_STRING = "E";
-    public static final String TRAP_STRING = "T";
-    public static final String EMPTY_SPACE_STRING = ".";
-    public static final String WALL_STRING = "W";
+    public static final String EMPTY = "."; 
     // horizontal spacer to make it look like a square
     public static final String H_SPACER_STRING = "   "; 
     // vertical spacer to make it look like a square
@@ -39,20 +33,33 @@ public class Maze
     {
         p = new Player(DEFAULT_PLAYER_X, DEFAULT_PLAYER_Y, this);
         monsters = new ArrayList<Monster>();
-        walls = new ArrayList<Point>();
         Monster m1 = new Monster(this); //create a mouse
         monsters.add(m1); //add it to the list
-        grid = new boolean[SIZE][SIZE];
-        
+        grid = new Item[SIZE][SIZE];
         //adding walls for testing
-        addWall(1,1);
-        addWall(1,2);
-        addWall(1,3);
-        addWall(1,4);
-        addWall(2,4);
-        addWall(3,4);
-        addWall(4,4);
+//         addWall(1,1);
+//         addWall(1,2);
+//         addWall(1,3);
+//         addWall(1,4);
+//         addWall(2,4);
+//         addWall(3,4);
+//         addWall(4,4);
     }
+    
+        /**
+     * @return true if the whole board has no dots left (player hit all dots)
+     */
+    public abstract boolean hasWon(); //checks to see if won.
+    
+    /**
+     * "Resolves" the new state of the game.
+     */
+    public abstract void  resolve();
+    
+    /**
+     * Returns the string associated with any object on a given space.
+     */
+    public abstract String gridNull(int x, int y);
 
     /**
      * Fetch and return the Player object.
@@ -112,94 +119,31 @@ public class Maze
         return false;
     }
     
-    /**
-     * @return true if the whole board has no dots left (player hit all dots)
+        /**
+     * Returns a string representation of the grid: 
+     * - put an "G" at the location of a Ghost
+     * - put a "P" if Pacman is at a given coordinate; 
+     * - print an "D" for an uneaten dot.
+     * - print a "." for an eaten dot.
+     * @return A string representation of the grid.
      */
-    public boolean hasWon() //checks to see if
-    {
+    public String toString() {
+        String output = ""; //initialize
         for(int j = 0; j < SIZE; j++)
         {
             for(int i = 0; i < SIZE; i++)
-            { 
-                if (grid[i][j] == true) {
-                    return false;
-                }
-            }
-        }
-        return true;        
-    }
-    
-     /**
-     * Returns a string representation of the grid.
-     * @return A string representation of the grid.
-    */
-    public String toString()
-    {
-        String output = ""; //initialize
-        return output;
-    }
-    
-    /**
-     * Checks if a coordinate has a mousetrap on it.
-     * @param  x   x-coordinate to check for a trap.
-     * @param  y   y-coordinate to check for a trap.
-     * @return true if there is a mousetrap at the indicated coordinate.
-     */
-    public boolean hasDotAt(int x, int y)
-    {
-        if(grid[x][y] == true)
-        {
-            return true;
-        }
-        else return false;
-    }
-    
-    public boolean hasWallAt(int x, int y)
-    {
-        for(Point w : walls) {
-            if ((w.getX() == x) && (w.getY() == y))
             {
-                return true;
+                // Note: The order of the following IF statements controls precedence over which letter
+                // is displayed when two objects overlap.
+                output += gridNull(i, j);
+                if(gridNull(i, j).equals("")) {
+                    output += grid[i][j].getLetter();
+                }
+                output += H_SPACER_STRING;
             }
+            output = output + V_SPACER_STRING;
         }
-        return false;
-    }
-    
-    /**
-     * "Resolves" the new state of the game.
-     */
-    public void resolve()
-    {
-        int index = 0;
-        boolean toRemove = false;
-        for (Monster m : monsters)
-        {
-             if (hasDotAt(m.getX(), m.getY())) //mouse on mousetrap
-             {
-                 grid[m.getX()][m.getY()] = false; //remove trap from grid.
-                 index = monsters.indexOf(m); //remove mouse from list.
-                 toRemove = true;
-             }
-        }
-        if (toRemove)
-        {
-            monsters.remove(index); //works only with 1 value right now
-        }
-        
-        System.out.print("\f"); //form feed "clears" the console (at least on Mac).
-        print();
-        System.out.print(COMMAND_REQUEST);
-    }
-    
-    public ArrayList<Point> getWalls()
-    {
-        return walls;
-    }
-    
-    public void addWall(int x, int y)
-    {
-        getWalls().add(new Point(x,y));
-        grid[x][y] = true;
+        return output;
     }
     
     /**

@@ -64,7 +64,10 @@ public class Creature
             {
                 if ((i <= (maze.SIZE - 1)) && (i >= 0)) //not out of bounds
                 {
-                    if(!(maze.hasWallAt(i,j))) {
+                    if(maze.grid[i][j] == null) {
+                        return true;
+                    }
+                    else if(maze.grid[i][j].getLetter() != "W") {
                         return true;
                     }
                 }
@@ -73,7 +76,10 @@ public class Creature
             {
                 if ((i <= (maze.SIZE - 1)) && (i >= 0)) //not out of bounds
                 {
-                    if(!(maze.hasWallAt(i,j))) {
+                    if(maze.grid[i][j] == null) {
+                        return true;
+                    }
+                    else if(maze.grid[i][j].getLetter() != "W") {
                         return true;
                     }
                 }
@@ -85,7 +91,10 @@ public class Creature
             {
                 if ((j <= (maze.SIZE - 1)) && (j >= 0)) //not out of bounds
                 {
-                    if(!(maze.hasWallAt(i,j))) {
+                    if(maze.grid[i][j] == null) {
+                        return true;
+                    }
+                    else if(maze.grid[i][j].getLetter() != "W") {
                         return true;
                     }
                 }
@@ -94,7 +103,10 @@ public class Creature
             {
                 if ((j <= (maze.SIZE - 1)) && (j >= 0)) //not out of bounds
                 {
-                    if(!(maze.hasWallAt(i,j))) {
+                    if(maze.grid[i][j] == null) {
+                        return true;
+                    }
+                    else if(maze.grid[i][j].getLetter() != "W") {
                         return true;
                     }
                 }

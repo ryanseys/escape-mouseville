@@ -53,7 +53,7 @@ public class Elephant extends Player
     {
         if (inventory() > 0)
         {
-            maze.grid[getX()][getY()] = true;
+            maze.grid[getX()][getY()] = new Mousetrap();
             mousetraps = inventory() - 1;
         }
         else System.out.println(NO_MTRAPS);
