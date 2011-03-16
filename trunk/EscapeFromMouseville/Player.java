@@ -1,3 +1,4 @@
+import java.util.Random;
 /**
  * Player represents the player, which is a creature that moves based on the user's input 
  * (for example, Pacman can be substituted with Player)
@@ -43,8 +44,10 @@ public class Player extends Creature
      */
     public void moveDown()
     {
+       System.out.println("ASFAJFAJGJNsdjlganljls");
        if(canGoTo(getX(),(getY() + 1)))
        {
+           System.out.println("GOES IN THE IF!");
            y = (getY() + 1);
        }
        else System.out.println(ERROR_MOVE);
@@ -74,6 +77,38 @@ public class Player extends Creature
        else System.out.println(ERROR_MOVE);
     }
     
+    public void dig()
+    {
+        if(!(maze.grid[getX()][getY()] instanceof Hole)) {
+            //don't dig, nothing there.
+        }
+        else {
+            maze.grid[getX()][getY()] = null;
+            Random r = new Random();
+            r.setSeed(System.currentTimeMillis());
+            int num = r.nextInt(5);
+            if(num == 0) {
+                System.out.println("0");
+                maze.addPoints(100);
+                
+                //maze.setMsg("You gained 100 points!");
+            }
+            else if((num == 1) || (num == 4)) {
+                System.out.println("0 or 4");
+                maze.addMonster(new Monster(0,4, maze));
+                //maze.setMsg("A monster appeared!");
+            }
+            else if(num == 2) {
+                System.out.println("2");
+                maze.addPoints(-500);
+            }
+            else if(num == 3) {
+                System.out.println("3");
+                maze.addPoints(500);
+            }
+        }
+    }
+    
     /**
      * Process user input: character 
      * 'w' means move up character 
@@ -98,6 +133,10 @@ public class Player extends Creature
         else if (c == 's')
         {
             moveRight();
+        }
+        else if (c == 'd')
+        {
+            dig();
         }
         else if (c == 'q')
         {

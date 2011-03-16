@@ -15,6 +15,8 @@ public abstract class Maze
     public Item grid[][];
     protected Player p;
     protected ArrayList<Monster> monsters;
+    private int points;
+    private String msg;
     public static final int DEFAULT_PLAYER_X = 4;
     public static final int DEFAULT_PLAYER_Y = 2;
     public static final int DEFAULT_EXIT_X = 3;
@@ -39,6 +41,7 @@ public abstract class Maze
         Monster m1 = new Monster(this); //create a mouse
         monsters.add(m1); //add it to the list
         grid = new Item[SIZE][SIZE];
+        points = 1000;
         //adding walls for testing
         grid[1][1] = new Wall();
         grid[1][2] = new Wall();
@@ -76,6 +79,11 @@ public abstract class Maze
     public Player getPlayer()
     {
         return p;
+    }
+    
+    public void addPoints(int amount)
+    {
+        points += amount;
     }
     
     /**
@@ -161,4 +169,6 @@ public abstract class Maze
     {
         System.out.println(toString());
     }
+    
+    
 }
