@@ -21,7 +21,6 @@ public class PacmanMaze extends Maze
         {
             for(int i = 0; i < SIZE; i++)
             {
-                
                 grid[i][j] = new Dot();
             }
         }

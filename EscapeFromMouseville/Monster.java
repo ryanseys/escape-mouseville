@@ -1,3 +1,4 @@
+import java.util.Random;
 /**
  * A Monster is a creature that chases players!
  * 
@@ -30,37 +31,33 @@ public class Monster extends Creature
     {
         // Four cases: Move left, right, up or down of Player.
         // quite possibly the laziest move algorithm ever.
-        if (this.getY() > maze.getPlayer().getY()) //player is above
-        { 
+        boolean moved = false;
+        if((this.getY() > maze.getPlayer().getY())) {
             if (canGoTo(x, y - 1))
             {
                 y -= 1;
-            }//move up
+            }
         }
-        else if (this.getY() < maze.getPlayer().getY()) //player is below
-        {
+        else if (this.getY() < maze.getPlayer().getY()) //player is above
+        { 
             if (canGoTo(x, y + 1))
             {
                 y += 1;
+            }
+        }//move up
+        else if (this.getX() > maze.getPlayer().getX())//player is below
+        {
+            if (canGoTo(x - 1, y + 1))
+            {
+                x -= 1;
             } //move down
         }
-        else if (this.getX() < maze.getPlayer().getX()) //player on right
+        else if (this.getX() < maze.getPlayer().getX())//player on right
         { 
             if (canGoTo(x + 1, y))
             {
                 x += 1;
             } //move right
-        }
-        else if (this.getX() > maze.getPlayer().getX()) //player on left
-        {
-            if (canGoTo(x - 1, y))
-            {
-                x -= 1;
-            } //move left
-        }
-        else
-        {
-            //ON TOP OF PLAYER! :O (this is handled elsewhere but functionality can be added here).
         }
     }
 }
