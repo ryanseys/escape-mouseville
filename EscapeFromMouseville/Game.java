@@ -31,9 +31,15 @@ public class Game
         while(!done)
         {
             Scanner s = new Scanner(System.in);
-            command = s.nextLine().charAt(0);
+            try {
+                command = s.nextLine().charAt(0);
+            }
+            catch (StringIndexOutOfBoundsException e) {
+                command = '*';
+            }
             maze.p.processCommand(command);
             //move all the mice.
+            maze.resolve();
             for (Monster m : maze.getMonsters())
             {
                 m.move(); //comment this out if you want to test the game winnability.
@@ -57,7 +63,7 @@ public class Game
      */
     public static void main(String[] args)
     {
-        Mouseville m = new Mouseville();
+        Digger m = new Digger();
         Game g = new Game(m);
         g.play();
     }

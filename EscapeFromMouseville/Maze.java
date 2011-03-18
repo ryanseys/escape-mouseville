@@ -81,6 +81,7 @@ public abstract class Maze
         return p;
     }
     
+    //add points to the score.
     public void addPoints(int amount)
     {
         points += amount;
@@ -143,7 +144,7 @@ public abstract class Maze
      * - print a "." for an eaten dot.
      * @return A string representation of the grid.
      */
-    public String toString() {
+    public String toString(String message) {
         String output = ""; //initialize
         for(int j = 0; j < SIZE; j++)
         {
@@ -159,16 +160,15 @@ public abstract class Maze
             }
             output = output + V_SPACER_STRING;
         }
+        output += message;
         return output;
     }
     
     /**
      * Ouput a string representation of the grid to the console.
      */
-    public void print()
+    public void print(String message)
     {
-        System.out.println(toString());
+        System.out.println(toString(message));
     }
-    
-    
 }

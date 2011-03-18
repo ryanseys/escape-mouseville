@@ -33,7 +33,7 @@ public class PacmanMaze extends Maze
     {
         eat(p.getX(), p.getY());
         System.out.print("\f"); //form feed "clears" the console (at least on Mac).
-        print();
+        print("");
         System.out.print(COMMAND_REQUEST);
     }
     
@@ -67,6 +67,14 @@ public class PacmanMaze extends Maze
         grid[i][j] = null;
     }
     
+    /**
+     * A new function added such that if the game board 
+     * contains a null Object (no Item there), then
+     * continue to check for specific objects like monster
+     * or player.
+     * 
+     * Including a function like this simplified toString a lot!
+     **/
     public String gridNull(int i, int j) {
         if (hasMonster(i,j)) {
             return GHOST_STRING;

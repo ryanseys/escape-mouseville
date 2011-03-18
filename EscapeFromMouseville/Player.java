@@ -1,4 +1,6 @@
 import java.util.Random;
+import java.util.Scanner;
+import java.util.ArrayList;
 /**
  * Player represents the player, which is a creature that moves based on the user's input 
  * (for example, Pacman can be substituted with Player)
@@ -44,10 +46,8 @@ public class Player extends Creature
      */
     public void moveDown()
     {
-       System.out.println("ASFAJFAJGJNsdjlganljls");
        if(canGoTo(getX(),(getY() + 1)))
        {
-           System.out.println("GOES IN THE IF!");
            y = (getY() + 1);
        }
        else System.out.println(ERROR_MOVE);
@@ -77,6 +77,12 @@ public class Player extends Creature
        else System.out.println(ERROR_MOVE);
     }
     
+    /** 
+     * Provides functionality for the Digger Maze game.
+     * Produces prizes for digging up the X's, however some digs
+     * produce a monster! out run it, or kill it with a bomb ('b')
+     * The bomb costs 1000 points.
+     */
     public void dig()
     {
         if(!(maze.grid[getX()][getY()] instanceof Hole)) {
@@ -90,24 +96,39 @@ public class Player extends Creature
             if(num == 0) {
                 System.out.println("0");
                 maze.addPoints(100);
-                
-                //maze.setMsg("You gained 100 points!");
+                maze.print("You gained 100 points!");
             }
             else if((num == 1) || (num == 4)) {
                 System.out.println("0 or 4");
                 maze.addMonster(new Monster(0,4, maze));
-                //maze.setMsg("A monster appeared!");
+                maze.print("A monster appeared!");
             }
             else if(num == 2) {
                 System.out.println("2");
-                maze.addPoints(-500);
+                maze.addPoints(250);
+                maze.print("Congratulations!");
             }
             else if(num == 3) {
                 System.out.println("3");
                 maze.addPoints(500);
+                maze.print("You found a hidden treasure! +500 points!");
+            }
+            Digger maze2 = (Digger) maze;
+            if(maze2.getHolesCount() <= 1) {
+                maze2.addHole(r.nextInt(maze.SIZE), r.nextInt(maze.SIZE));
             }
         }
     }
+    
+    /**
+     * Destroys all the monsters on the game board, however
+     * sets you back due to own damage and cost of bomb.
+     */
+    public void bomb() {
+            maze.addPoints(-1000);
+            maze.monsters = new ArrayList<Monster>();  
+    }
+        
     
     /**
      * Process user input: character 
@@ -115,6 +136,9 @@ public class Player extends Creature
      * 'z' means move down character
      * 'a' means move left character 
      * 's' means move right character
+     * 'b' means drop a bomb (Digger Game only for now)
+     * 'q' means quit the game
+     * 'd' means dig (Digger Game only for now)
      */
     public void processCommand(char c) 
     {
@@ -137,6 +161,10 @@ public class Player extends Creature
         else if (c == 'd')
         {
             dig();
+        }
+        else if (c == 'b')
+        {
+            bomb();
         }
         else if (c == 'q')
         {
