@@ -49,7 +49,7 @@ public class Mouseville extends Maze
         }
         
         System.out.print("\f"); //form feed "clears" the console (at least on Mac).
-        print();
+        print("");
         System.out.print(COMMAND_REQUEST);
     }
     
@@ -78,8 +78,13 @@ public class Mouseville extends Maze
     }
     
     /**
-     * Returns the string associated with any object on a given space.
-     */
+     * A new function added such that if the game board 
+     * contains a null Object (no Item there), then
+     * continue to check for specific objects like monster
+     * or player.
+     * 
+     * Including a function like this simplified toString a lot!
+     **/
     public String gridNull(int i, int j) {
         if (hasMonster(i,j)) {
             return MOUSE_STRING;

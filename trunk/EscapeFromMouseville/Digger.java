@@ -1,8 +1,11 @@
 import java.util.Random;
+import java.util.ArrayList;
 /**
- * Write a description of class Digger here.
+ * Dig holes to be awarded points. If you get winning amount of points, you win.
+ * Set bombs with command 'b' but that reduces score a lot! Watch out for monsters
+ * and kill them with bombs!
  * 
- * @author (your name) 
+ * @author Ryan Seys
  * @version (a version number or a date)
  */
 public class Digger extends Maze
@@ -10,7 +13,9 @@ public class Digger extends Maze
     // instance variables - replace the example below with your own
     public static final String MONSTER_STRING = "M";
     public static final String DIGGER_STRING = "P";
-    private int points;
+    private int points = 1000; //initial points set to 1000
+    private ArrayList<Hole> holes;
+    private static final int WINNING_POINTS = 2000; // you need 2000 points to win!
     /**
      * Constructor for objects of class Digger
      */
@@ -37,7 +42,7 @@ public class Digger extends Maze
     public void resolve()
     {
         System.out.print("\f"); //form feed "clears" the console (at least on Mac).
-        print();
+        print("Score : " + points);
         System.out.print(COMMAND_REQUEST);
     }
     
@@ -47,9 +52,20 @@ public class Digger extends Maze
      */
     public boolean hasWon()
     {
-        return false;
+        if(points >= WINNING_POINTS) {
+            return true;
+        }
+        else return false;
     }
 
+    /**
+     * A new function added such that if the game board 
+     * contains a null Object (no Item there), then
+     * continue to check for specific objects like monster
+     * or player.
+     * 
+     * Including a function like this simplified toString a lot!
+     **/
     public String gridNull(int i, int j) {
         if (hasMonster(i,j)) {
             return MONSTER_STRING;
@@ -62,4 +78,39 @@ public class Digger extends Maze
         }
         else return ""; //empty space
     }
+    
+    /**
+     * Adds points to the player's points.
+     */
+    public void addPoints(int amount)
+    {
+        points += amount;
+    }
+    
+    /**
+     * Add a hole (X) to the game board.\
+     * Hole is an Item.
+     */
+    public void addHole(int x, int y) {
+        grid[x][y] = new Hole();
+    }
+    
+    /**
+     * Get how many holes are on the game board.
+     * As you dig more holes, more are produced
+     * to keep the game going!
+     */
+    public int getHolesCount() {
+        int count = 0;
+        for(int j = 0; j < SIZE; j++)
+        {
+            for(int i = 0; i < SIZE; i++)
+            {
+                if(grid[i][j] instanceof Hole) {
+                    count +=1;
+                }
+            }
+        }
+        return count;
+        }
 }
