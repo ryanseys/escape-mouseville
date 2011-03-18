@@ -2,11 +2,11 @@ import java.util.Random;
 import java.util.ArrayList;
 /**
  * Dig holes to be awarded points. If you get winning amount of points, you win.
- * Set bombs with command 'b' but that reduces score a lot! Watch out for monsters
- * and kill them with bombs!
+ * Watch out for monsters and kill them all by setting a bomb! But it costs
+ * points to use bombs so don't use them too often.
  * 
  * @author Ryan Seys
- * @version (a version number or a date)
+ * @version 1
  */
 public class Digger extends Maze
 {
@@ -28,7 +28,7 @@ public class Digger extends Maze
                 grid[i][j] = null;
             }
         }
-        
+        //initialize some holes.
         grid[2][3] = new Hole();
         grid[4][1] = new Hole();
         grid[1][0] = new Hole();
