@@ -21,6 +21,7 @@ public class Digger extends Maze
      */
     public Digger() 
     {
+        super("Digger");
         for(int j = 0; j < SIZE; j++)
         {
             for(int i = 0; i < SIZE; i++)
@@ -33,7 +34,6 @@ public class Digger extends Maze
         grid[4][1] = new Hole();
         grid[1][0] = new Hole();
         grid[3][4] = new Hole();
-        monsters.remove(0);
     }
     
     /**

@@ -17,8 +17,11 @@ public class MonsterTest extends junit.framework.TestCase
 	{
 		Mouseville mousevil1 = new Mouseville();
 		Player player1 = mousevil1.getPlayer();
-		player1.moveRight();
-		player1.moveRight();
+		player1.moveUp();
+		player1.moveUp();
+		player1.moveUp();
+		player1.moveLeft();
+		player1.moveLeft();
 		assertEquals(true, mousevil1.hasMonster(0, 0));
 		java.util.ArrayList<Monster> arrayLis1 = mousevil1.getMonsters();
 		Monster monster1 = (Monster)arrayLis1.get(0);

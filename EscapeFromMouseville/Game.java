@@ -63,7 +63,20 @@ public class Game
      */
     public static void main(String[] args)
     {
-        Digger m = new Digger();
+        Maze m = null;
+        if(args[0].equals("Mouseville")) {
+            m = new Mouseville();
+        }
+        else if(args[0].equals("Pacman")) {
+            m = new PacmanMaze();
+        }
+        else if(args[0].equals("Digger")) {
+            m = new Digger();
+        }
+        //default if nothing is given as the parameter
+        else
+            m = new Mouseville();
+        
         Game g = new Game(m);
         g.play();
     }

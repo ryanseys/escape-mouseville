@@ -23,7 +23,21 @@ public class Mouseville extends Maze
     {
         //initialized a grid full of false values
         super("Mouseville");
-        grid[DEFAULT_EXIT_X][DEFAULT_EXIT_Y] = new Exit(); // exit is given an set point. this can be changed later.
+        grid[DEFAULT_EXIT_X][DEFAULT_EXIT_Y] = new Exit(); 
+        // exit is given an set point. this can be changed later.
+        
+        //adding walls for testing
+        grid[1][1] = new Wall();
+        grid[1][2] = new Wall();
+        grid[1][3] = new Wall();
+        grid[1][4] = new Wall();
+        grid[2][4] = new Wall();
+        grid[3][4] = new Wall();
+        grid[4][4] = new Wall();
+        //makin monster
+        monsters = new ArrayList<Monster>();
+        Monster m1 = new Monster(this); //create a mouse
+        monsters.add(m1); //add it to the list
     }
 
     /**

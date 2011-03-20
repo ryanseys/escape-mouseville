@@ -20,7 +20,7 @@ public class MousevilleTest extends junit.framework.TestCase
 		assertEquals(mousevil1.getPlayer(), player1);
 		player1.moveRight();
 		player1.moveDown();
-		assertEquals(0, player1.getY());
+		assertEquals(3, player1.getY());
 	}
 
 	public void testMousetraps()
@@ -29,11 +29,10 @@ public class MousevilleTest extends junit.framework.TestCase
 		Mouseville mousevil1 = new Mouseville();
 		mousevil1.setMousetrap(0, 1);
 		Player player1 = mousevil1.getPlayer();
-		player1.moveRight();
-		player1.moveRight();
 		java.util.ArrayList<Monster> arrayLis1 = mousevil1.getMonsters();
 		Monster monster1 = (Monster)arrayLis1.get(0);
 		monster1.move();
+		mousevil1.resolve();
 		assertEquals(false, mousevil1.hasMonster(0, 1));
 	}
 }

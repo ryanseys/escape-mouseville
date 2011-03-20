@@ -37,19 +37,8 @@ public abstract class Maze
             p = new Elephant(DEFAULT_PLAYER_X, DEFAULT_PLAYER_Y, this);
         }
         else p = new Player(DEFAULT_PLAYER_X, DEFAULT_PLAYER_Y, this);
-        monsters = new ArrayList<Monster>();
-        Monster m1 = new Monster(this); //create a mouse
-        monsters.add(m1); //add it to the list
         grid = new Item[SIZE][SIZE];
-        points = 1000;
-        //adding walls for testing
-        grid[1][1] = new Wall();
-        grid[1][2] = new Wall();
-        grid[1][3] = new Wall();
-        grid[1][4] = new Wall();
-        grid[2][4] = new Wall();
-        grid[3][4] = new Wall();
-        grid[4][4] = new Wall();
+        points = 1000; //initial points to give player. Reduce to make it harder to win.
     }
     
     public Maze()
