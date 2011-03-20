@@ -10,7 +10,7 @@ public class PacmanMaze extends Maze
     private static final String GHOST_STRING = "G";
     private static final String PAC_STRING = "P";
     private static final String DOT = "D";
-
+    
     /**
      * Initialize the dots and the count of dots left.
      */
@@ -24,6 +24,19 @@ public class PacmanMaze extends Maze
                 grid[i][j] = new Dot();
             }
         }
+        //adding walls for testing
+        grid[1][1] = new Wall();
+        grid[1][2] = new Wall();
+        grid[1][3] = new Wall();
+        grid[1][4] = new Wall();
+        grid[2][4] = new Wall();
+        grid[3][4] = new Wall();
+        grid[4][4] = new Wall();
+        
+        //making monsters
+        monsters = new ArrayList<Monster>();
+        Monster m1 = new Monster(this); //create a mouse
+        monsters.add(m1); //add it to the list
     }
 
     /**
