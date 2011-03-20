@@ -60,10 +60,15 @@ public class Game
     
     /**
      * Launches the game by instantiating a new game and calling play() on it.
+     * 
+     * With the main function you can input the name of the game as an argument to an
+     * array of strings. 
+     * Names can be seen below and are pretty straightforward for what game they represent.
      */
     public static void main(String[] args)
     {
         Maze m = null;
+        
         if(args[0].equals("Mouseville")) {
             m = new Mouseville();
         }
