@@ -114,4 +114,16 @@ public class Creature
         }
         return false;
     }
+    
+    /**
+     * Be CAREFUL with this sucker! 
+     * It is a good way to get your self into a null pointer 
+     * exception or outOfBounds error. ALWAYS CHECK you can 
+     * move to the space (using canGoTo(int x, int y) method above)
+     * before using this method. BE CAREFUL!
+     */
+    protected void goTo(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 }

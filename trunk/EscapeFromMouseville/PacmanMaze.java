@@ -9,7 +9,7 @@ public class PacmanMaze extends Maze
 {
     private static final String GHOST_STRING = "G";
     private static final String PAC_STRING = "P";
-    private static final String DOT = "D";
+    private static final String DOT = "o";
     
     /**
      * Initialize the dots and the count of dots left.
@@ -17,6 +17,7 @@ public class PacmanMaze extends Maze
     public PacmanMaze()
     {
         super();
+        //fill the maze with dots
         for(int j = 0; j < SIZE; j++)
         {
             for(int i = 0; i < SIZE; i++)
@@ -56,13 +57,13 @@ public class PacmanMaze extends Maze
      */
     public boolean hasWon()
     {
-        // if all dots are gone. (all grid are true)
+        // if all dots are gone.
         for(int j = 0; j < SIZE; j++)
         {
             for(int i = 0; i < SIZE; i++)
             {
                 if (grid[i][j] != null) {
-                    if(grid[i][j].getLetter().equals("D"))
+                    if(grid[i][j].getLetter().equals(DOT))
                     {
                         return false;
                     }
@@ -77,7 +78,7 @@ public class PacmanMaze extends Maze
      */
     public void eat(int i, int j) 
     {
-        grid[i][j] = null;
+        grid[i][j] = null; //replace the item at the space with null.
     }
     
     /**

@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Wall here.
+ * A wall item cannot be passed.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Seys
+ * @version 1.0
  */
 public class Wall implements Item
 {

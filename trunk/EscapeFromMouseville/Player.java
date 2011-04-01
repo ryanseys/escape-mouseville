@@ -76,60 +76,7 @@ public class Player extends Creature
        }
        else System.out.println(ERROR_MOVE);
     }
-    
-    /** 
-     * Provides functionality for the Digger Maze game.
-     * Produces prizes for digging up the X's, however some digs
-     * produce a monster! out run it, or kill it with a bomb ('b')
-     * The bomb costs 1000 points.
-     */
-    public void dig()
-    {
-        if(!(maze.grid[getX()][getY()] instanceof Hole)) {
-            //don't dig, nothing there.
-        }
-        else {
-            maze.grid[getX()][getY()] = null;
-            Random r = new Random();
-            r.setSeed(System.currentTimeMillis());
-            int num = r.nextInt(5);
-            if(num == 0) {
-                System.out.println("0");
-                maze.addPoints(100);
-                maze.print("You gained 100 points!");
-            }
-            else if((num == 1) || (num == 4)) {
-                System.out.println("0 or 4");
-                maze.addMonster(new Monster(0,4, maze));
-                maze.print("A monster appeared!");
-            }
-            else if(num == 2) {
-                System.out.println("2");
-                maze.addPoints(250);
-                maze.print("Congratulations!");
-            }
-            else if(num == 3) {
-                System.out.println("3");
-                maze.addPoints(500);
-                maze.print("You found a hidden treasure! +500 points!");
-            }
-            Digger maze2 = (Digger) maze;
-            if(maze2.getHolesCount() <= 1) {
-                maze2.addHole(r.nextInt(maze.SIZE), r.nextInt(maze.SIZE));
-            }
-        }
-    }
-    
-    /**
-     * Destroys all the monsters on the game board, however
-     * sets you back due to own damage and cost of bomb.
-     */
-    public void bomb() {
-            maze.addPoints(-1000);
-            maze.monsters = new ArrayList<Monster>();  
-    }
-        
-    
+
     /**
      * Process user input: character 
      * 'w' means move up character 
@@ -157,14 +104,6 @@ public class Player extends Creature
         else if (c == 's')
         {
             moveRight();
-        }
-        else if (c == 'd')
-        {
-            dig();
-        }
-        else if (c == 'b')
-        {
-            bomb();
         }
         else if (c == 'q')
         {

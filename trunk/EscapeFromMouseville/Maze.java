@@ -33,10 +33,10 @@ public abstract class Maze
      */
     public Maze(String option)
     {
-        if(option.equals("Mouseville")){
+        /*if(option.equals("Mouseville")){
             p = new Elephant(DEFAULT_PLAYER_X, DEFAULT_PLAYER_Y, this);
         }
-        else p = new Player(DEFAULT_PLAYER_X, DEFAULT_PLAYER_Y, this);
+        else*/ p = new Player(DEFAULT_PLAYER_X, DEFAULT_PLAYER_Y, this);
         grid = new Item[SIZE][SIZE];
         points = 1000; //initial points to give player. Reduce to make it harder to win.
     }
@@ -151,6 +151,15 @@ public abstract class Maze
         }
         output += message;
         return output;
+    }
+    
+    
+    /**
+     * Removes a 'dot' indicated by the supplied coordinates from the Grid.
+     */
+    public void eat(int i, int j) 
+    {
+        grid[i][j] = null;
     }
     
     /**
