@@ -7,8 +7,7 @@ import java.util.Scanner;
  */
 public class Game
 {
-    private Maze maze;
-
+    protected Maze maze;
     /**
      * Constructor for objects of class Game
      */
@@ -47,15 +46,27 @@ public class Game
             maze.resolve();
             if (maze.hasLost())
             {
-                System.out.println("YOU LOST!");
+                alert("YOU LOST!");
                 done = true;
             }
             else if (maze.hasWon())
             {
-                System.out.println("YOU WON!");
+                alert("YOU WON!");
                 done = true;
             }
         }
+    }
+    
+    /**
+     * repaints the GUI for PacmanGame. Does nothing.
+     */
+    protected void repaint() {}
+    
+    /**
+     * This displays an alert to the user through a print message on the terminal.
+     */
+    protected void alert(String s) {
+        System.out.println(s);
     }
     
     /**
@@ -67,22 +78,7 @@ public class Game
      */
     public static void main(String[] args)
     {
-        Maze m = null;
-        
-        if(args[0].equals("Mouseville")) {
-            m = new Mouseville();
-        }
-        else if(args[0].equals("Pacman")) {
-            m = new PacmanMaze();
-        }
-        else if(args[0].equals("Digger")) {
-            m = new Digger();
-        }
-        //default if nothing is given as the parameter
-        else
-            m = new Mouseville();
-        
-        Game g = new Game(m);
-        g.play();
+        Maze m = new PacmanMaze();
+        GraphicalPacmanGame g = new GraphicalPacmanGame(m);
     }
 }
